@@ -1,4 +1,4 @@
-import 'package:clio_chess_app/Screens/ChessClock/components/chessclock_body.dart';
+import 'package:clio_chess_amp_v2/Screens/ChessClock/components/chessclock_body.dart';
 import 'package:flutter/material.dart';
 
 class ChessClockPage extends StatelessWidget {

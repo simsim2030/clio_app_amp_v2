@@ -1,10 +1,9 @@
-import 'package:clio_chess_app/Screens/OfflineChess/offline_chess_page.dart';
-import 'package:clio_chess_app/Screens/OfflineMode/offlinemode_screen.dart';
-import 'package:clio_chess_app/Screens/Signup/signup_page.dart';
-import 'package:clio_chess_app/Screens/Welcome/components/wlecome_background.dart';
-import 'package:clio_chess_app/components/buttons/rounded_button.dart';
-import 'package:clio_chess_app/Screens/Login/login_page.dart';
-import 'package:clio_chess_app/components/buttons/tap_button.dart';
+import 'package:clio_chess_amp_v2/Screens/Login/login_page.dart';
+import 'package:clio_chess_amp_v2/Screens/OfflineMode/offlinemode_screen.dart';
+import 'package:clio_chess_amp_v2/Screens/Signup/signup_page.dart';
+import 'package:clio_chess_amp_v2/Screens/Welcome/components/wlecome_background.dart';
+import 'package:clio_chess_amp_v2/components/buttons/rounded_button.dart';
+import 'package:clio_chess_amp_v2/components/buttons/tap_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -35,7 +34,7 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.05),
             RoundedButton(
               text: "Log In",
-              press: () {
+              onPressed: () {
                 Navigator.of(context).pushNamed(LoginPage.routeName);
               },
             ),
@@ -43,14 +42,14 @@ class Body extends StatelessWidget {
               text: "Sign Up",
               color: Colors.lightBlue,
               textColor: Colors.white,
-              press: () {
+              onPressed: () {
                 Navigator.of(context).pushNamed(SignupPage.routeName);
               },
             ),
             SizedBox(height: size.height * 0.05),
             TapButton(
               text: "Offline Mode",
-              press: () {
+              onTap: () {
                 Navigator.of(context).pushNamed(OfflineModePage.routeName);
               },
             ),

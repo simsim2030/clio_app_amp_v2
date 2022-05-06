@@ -1,7 +1,7 @@
-import 'package:clio_chess_app/pages/history_page.dart';
-import 'package:clio_chess_app/Screens/OfflineChess/offline_chess_page.dart';
-import 'package:clio_chess_app/pages/setting_page.dart';
-import 'package:clio_chess_app/widgets/main_drawer.dart';
+import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
+import 'package:clio_chess_amp_v2/pages/history_page.dart';
+import 'package:clio_chess_amp_v2/pages/setting_page.dart';
+import 'package:clio_chess_amp_v2/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

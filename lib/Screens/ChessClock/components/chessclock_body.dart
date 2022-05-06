@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ChessClockBody extends StatefulWidget {
   const ChessClockBody({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

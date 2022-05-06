@@ -1,17 +1,17 @@
-import 'package:clio_chess_app/Screens/Login/components/already_have_an_account_check.dart';
-import 'package:clio_chess_app/Screens/Login/components/login_background.dart';
-import 'package:clio_chess_app/Screens/Signup/components/or_divier.dart';
-import 'package:clio_chess_app/components/social_icon.dart';
-import 'package:clio_chess_app/Screens/Signup/signup_page.dart';
-import 'package:clio_chess_app/components/buttons/rounded_button.dart';
-import 'package:clio_chess_app/components/fields/rounded_input_field.dart';
-import 'package:clio_chess_app/components/fields/rounded_password_field.dart';
+import 'package:clio_chess_amp_v2/Screens/Login/components/already_have_an_account_check.dart';
+import 'package:clio_chess_amp_v2/Screens/Login/components/login_background.dart';
+import 'package:clio_chess_amp_v2/Screens/Signup/components/or_divier.dart';
+import 'package:clio_chess_amp_v2/Screens/Signup/signup_page.dart';
+import 'package:clio_chess_amp_v2/components/buttons/rounded_button.dart';
+import 'package:clio_chess_amp_v2/components/fields/rounded_input_field.dart';
+import 'package:clio_chess_amp_v2/components/fields/rounded_password_field.dart';
+import 'package:clio_chess_amp_v2/components/social_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginBody extends StatelessWidget {
   const LoginBody({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -47,7 +47,7 @@ class LoginBody extends StatelessWidget {
             ),
             RoundedButton(
               text: "Log In",
-              press: () {},
+              onPressed: () {},
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
@@ -61,15 +61,15 @@ class LoginBody extends StatelessWidget {
               children: <Widget>[
                 SocialIcon(
                   iconSrc: "assets/icons/facebook.svg",
-                  press: () {},
+                  onTap: () {},
                 ),
                 SocialIcon(
                   iconSrc: "assets/icons/twitter.svg",
-                  press: () {},
+                  onTap: () {},
                 ),
                 SocialIcon(
                   iconSrc: "assets/icons/google-plus.svg",
-                  press: () {},
+                  onTap: () {},
                 ),
               ],
             )

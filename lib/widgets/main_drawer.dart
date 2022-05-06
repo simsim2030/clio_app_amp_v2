@@ -4,7 +4,11 @@ import '../Screens/OfflineChess/offline_chess_page.dart';
 import '../pages/setting_page.dart';
 
 class MainDrawer extends StatelessWidget {
-  Widget buildListTile(String title, IconData icon, Function tapHandler) {
+  Widget buildListTile(
+    String title,
+    IconData icon,
+    VoidCallback tapHandler,
+  ) {
     return ListTile(
       leading: Icon(
         icon,

@@ -1,4 +1,4 @@
-import 'package:clio_chess_app/Screens/OfflineMode/components/offlinemode_body.dart';
+import 'package:clio_chess_amp_v2/Screens/OfflineMode/components/offlinemode_body.dart';
 import 'package:flutter/material.dart';
 
 class OfflineModePage extends StatelessWidget {

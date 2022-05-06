@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class RounderOutlinedButton extends StatelessWidget {
   final String text;
-  final Function press;
+  final VoidCallback onPressed;
   final Color textColor, borderColor, backgroundColor;
   const RounderOutlinedButton({
-    Key key,
-    this.text,
-    this.press,
+    Key? key,
+    required this.text,
     this.textColor = Colors.orange,
     this.borderColor = Colors.blue,
     this.backgroundColor = Colors.white10,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -33,7 +33,7 @@ class RounderOutlinedButton extends StatelessWidget {
           ),
           primary: backgroundColor,
         ),
-        onPressed: press,
+        onPressed: onPressed,
         child: Text(
           text,
           style: TextStyle(

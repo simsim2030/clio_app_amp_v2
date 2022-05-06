@@ -1,5 +1,6 @@
+import 'package:clio_chess_amp_v2/Screens/Welcome/components/welcome_body.dart';
 import 'package:flutter/material.dart';
-import 'package:clio_chess_app/Screens/Welcome/components/welcome_body.dart';
+
 
 class WelcomeScreen extends StatelessWidget {
   @override

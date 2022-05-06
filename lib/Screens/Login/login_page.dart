@@ -1,4 +1,4 @@
-import 'package:clio_chess_app/Screens/Login/components/login_body.dart';
+import 'package:clio_chess_amp_v2/Screens/Login/components/login_body.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {

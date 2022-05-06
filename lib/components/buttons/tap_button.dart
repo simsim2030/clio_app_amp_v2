@@ -1,15 +1,17 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class TapButton extends StatelessWidget {
   final String text;
-  final Function press;
+  final VoidCallback onTap;
   final Color textColor;
 
   const TapButton({
-    Key key,
-    this.text,
-    this.press,
+    Key? key,
+    required this.text,
     this.textColor = Colors.blueGrey,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class TapButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         GestureDetector(
-          onTap: press,
+          onTap: onTap,
           child: Text(
             text,
             style: TextStyle(

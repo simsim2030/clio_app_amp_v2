@@ -1,4 +1,4 @@
-import 'package:clio_chess_app/components/fields/text_field_container.dart';
+import 'package:clio_chess_amp_v2/components/fields/text_field_container.dart';
 import 'package:flutter/material.dart';
 
 class RoundedPasswordField extends StatelessWidget {
@@ -7,10 +7,10 @@ class RoundedPasswordField extends StatelessWidget {
   final IconData suffixicon;
   final ValueChanged<String> onChanged;
   const RoundedPasswordField({
-    Key key,
+    Key? key,
     this.hintText = "Password",
     this.icon = Icons.lock,
-    this.onChanged,
+    required this.onChanged,
     this.suffixicon = Icons.visibility,
   }) : super(key: key);
 

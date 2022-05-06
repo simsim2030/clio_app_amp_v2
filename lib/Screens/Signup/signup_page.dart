@@ -1,4 +1,4 @@
-import 'package:clio_chess_app/Screens/Signup/components/signup_body.dart';
+import 'package:clio_chess_amp_v2/Screens/Signup/components/signup_body.dart';
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatefulWidget {
