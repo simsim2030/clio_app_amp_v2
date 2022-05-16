@@ -29,8 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
+  flutter_localizations:
+    sdk: flutter
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -39,10 +39,18 @@ dependencies:
 
   flutter_stateless_chessboard: ^0.0.6
 
+  amplify_flutter: ^0.4.0
+  amplify_datastore: ^0.4.0
+  
+  amplify_auth_cognito: ^0.4.0
+  amplify_authenticator: ^0.1.0
+
+  amplify_analytics_pinpoint: ^0.4.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  intl: ^0.17.0
 flutter_launcher_name:
   name: "Clio Chess"
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -57,7 +65,7 @@ flutter_launcher_name:
 
 # The following section is specific to Flutter.
 flutter:
-
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

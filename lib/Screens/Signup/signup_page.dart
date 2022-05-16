@@ -1,5 +1,6 @@
-import 'package:clio_chess_amp_v2/Screens/Signup/components/signup_body.dart';
 import 'package:flutter/material.dart';
+import 'package:amplify_authenticator/amplify_authenticator.dart';
+import '../../pages/home_page.dart';
 
 class SignupPage extends StatefulWidget {
   static const routeName = '/signup_page';
@@ -10,12 +11,12 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
+    return Authenticator(
+      initialStep: AuthenticatorStep.signUp,
+      child: MaterialApp(
+        builder: Authenticator.builder(),
+        home: HomePage(),
       ),
-      backgroundColor: Colors.grey.shade900,
-      body: SignupBody(),
     );
   }
 }
