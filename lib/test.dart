@@ -1,6 +1,4 @@
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
-import 'package:clio_chess_amp_v2/components/Theme/login_signup_theme.dart';
 import 'package:flutter/material.dart';
 
 // import '../../components/localized_button_resolver.dart';
@@ -10,7 +8,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginSignupTheme theme = LoginSignupTheme();
+    final ThemeData theme = ThemeData();
     return Authenticator(
       // builder used to show a custom sign in and sign up experience
       authenticatorBuilder: (BuildContext context, AuthenticatorState state) {
@@ -85,9 +83,6 @@ class LoginPage extends StatelessWidget {
         }
       },
       child: MaterialApp(
-        theme: theme.customLightTheme,
-        darkTheme: theme.customDarkTheme,
-        themeMode: ThemeMode.system,
         builder: Authenticator.builder(),
         home: const Scaffold(
           body: Center(

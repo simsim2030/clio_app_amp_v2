@@ -1,4 +1,6 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
+import 'package:clio_chess_amp_v2/components/Theme/login_signup_theme.dart';
+
 import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -58,9 +60,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = ThemeData();
+    final LoginSignupTheme theme = LoginSignupTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: theme.customLightTheme,
+      darkTheme: theme.customDarkTheme,
+      themeMode: ThemeMode.system,
       title: 'Clio Chess Auth',
       // Internatize language pack
       localizationsDelegates: [
@@ -74,22 +79,22 @@ class _MyAppState extends State<MyApp> {
         Locale('es', ''), // Spanish, no country code
       ],
       //
-      theme: ThemeData(
-        colorScheme: theme.colorScheme.copyWith(
-          primary: Colors.blueGrey,
-          secondary: Colors.white,
-        ),
-        canvasColor: Color.fromRGBO(255, 254, 229, 1),
-        fontFamily: 'Raleway-Bold',
-        textTheme: ThemeData.light().textTheme.copyWith(
-            bodyText1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-            bodyText2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-            headline1: TextStyle(
-                fontSize: 20,
-                fontFamily: 'RobotoCondensed',
-                fontWeight: FontWeight.bold,
-                color: Colors.white)),
-      ),
+      // theme: ThemeData(
+      //   colorScheme: theme.colorScheme.copyWith(
+      //     primary: Colors.blueGrey,
+      //     secondary: Colors.white,
+      //   ),
+      //   canvasColor: Color.fromRGBO(255, 254, 229, 1),
+      //   fontFamily: 'Raleway-Bold',
+      //   textTheme: ThemeData.light().textTheme.copyWith(
+      //       bodyText1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+      //       bodyText2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+      //       headline1: TextStyle(
+      //           fontSize: 20,
+      //           fontFamily: 'RobotoCondensed',
+      //           fontWeight: FontWeight.bold,
+      //           color: Colors.white)),
+      // ),
       home: WelcomeScreen(),
 
       // home: MainScreen(),
