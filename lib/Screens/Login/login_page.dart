@@ -1,6 +1,6 @@
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/components/Theme/login_signup_theme.dart';
+import 'package:clio_chess_amp_v2/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 // import '../../components/localized_button_resolver.dart';
@@ -85,15 +85,12 @@ class LoginPage extends StatelessWidget {
         }
       },
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: theme.customLightTheme,
         darkTheme: theme.customDarkTheme,
         themeMode: ThemeMode.system,
         builder: Authenticator.builder(),
-        home: const Scaffold(
-          body: Center(
-            child: Text('You are logged in!'),
-          ),
-        ),
+        home: HomePage(),
       ),
     );
   }

@@ -63,9 +63,6 @@ class _MyAppState extends State<MyApp> {
     final LoginSignupTheme theme = LoginSignupTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: theme.customLightTheme,
-      darkTheme: theme.customDarkTheme,
-      themeMode: ThemeMode.system,
       title: 'Clio Chess Auth',
       // Internatize language pack
       localizationsDelegates: [
@@ -78,23 +75,7 @@ class _MyAppState extends State<MyApp> {
         Locale('en', ''), // English, no country code
         Locale('es', ''), // Spanish, no country code
       ],
-      //
-      // theme: ThemeData(
-      //   colorScheme: theme.colorScheme.copyWith(
-      //     primary: Colors.blueGrey,
-      //     secondary: Colors.white,
-      //   ),
-      //   canvasColor: Color.fromRGBO(255, 254, 229, 1),
-      //   fontFamily: 'Raleway-Bold',
-      //   textTheme: ThemeData.light().textTheme.copyWith(
-      //       bodyText1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-      //       bodyText2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-      //       headline1: TextStyle(
-      //           fontSize: 20,
-      //           fontFamily: 'RobotoCondensed',
-      //           fontWeight: FontWeight.bold,
-      //           color: Colors.white)),
-      // ),
+
       home: WelcomeScreen(),
 
       // home: MainScreen(),

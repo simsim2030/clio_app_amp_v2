@@ -89,15 +89,12 @@ class _SignupPageState extends State<SignupPage> {
         }
       },
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: theme.customLightTheme,
         darkTheme: theme.customDarkTheme,
         themeMode: ThemeMode.system,
         builder: Authenticator.builder(),
-        home: const Scaffold(
-          body: Center(
-            child: Text('You are logged in!'),
-          ),
-        ),
+        home: HomePage(),
       ),
     );
   }
