@@ -1,7 +1,7 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/components/auth.dart';
 import 'package:clio_chess_amp_v2/components/Theme/login_signup_theme.dart';
-import 'package:clio_chess_amp_v2/pages/home_page.dart';
+import 'package:clio_chess_amp_v2/Screens/Home/home_page.dart';
 import 'package:flutter/material.dart';
 
 // import '../../components/localized_button_resolver.dart';

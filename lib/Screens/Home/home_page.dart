@@ -21,12 +21,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () => Amplify.Auth.signOut(
-                  options: SignOutOptions(globalSignOut: true)))
-        ],
       ),
       drawer: MainDrawer(),
       body: Center(

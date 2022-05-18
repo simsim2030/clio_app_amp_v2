@@ -1,8 +1,7 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/components/Theme/login_signup_theme.dart';
-import 'package:clio_chess_amp_v2/pages/home_page.dart';
+import 'package:clio_chess_amp_v2/Screens/Home/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Auth extends StatelessWidget {
   const Auth({
