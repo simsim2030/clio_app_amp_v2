@@ -1,14 +1,14 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
+import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
+import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
 import 'package:clio_chess_amp_v2/components/Theme/login_signup_theme.dart';
 
 import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/ChessClock/chessclock.dart';
-import 'Screens/Login/login_page.dart';
 import 'Screens/OfflineChess/offline_chess_page.dart';
 import 'Screens/OfflineMode/offlinemode_screen.dart';
-import 'Screens/Signup/signup_page.dart';
 import 'Screens/Welcome/welcome_screen.dart';
 import 'pages/history_page.dart';
 import 'pages/setting_page.dart';

@@ -1,7 +1,8 @@
-import 'package:clio_chess_amp_v2/Screens/Login/login_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineMode/offlinemode_screen.dart';
-import 'package:clio_chess_amp_v2/Screens/Signup/signup_page.dart';
 import 'package:clio_chess_amp_v2/Screens/Welcome/components/wlecome_background.dart';
+import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
+import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
+
 import 'package:clio_chess_amp_v2/components/buttons/rounded_button.dart';
 import 'package:clio_chess_amp_v2/components/buttons/tap_button.dart';
 import 'package:flutter/material.dart';
