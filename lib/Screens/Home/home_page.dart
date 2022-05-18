@@ -36,26 +36,39 @@ class _HomePageState extends State<HomePage> {
                 fit: BoxFit.cover,
               ),
               Container(height: 60.0),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text('Live Chess'),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text('Live Chess'),
+                ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(HistoryPage.routeName);
-                },
-                child: Text('History'),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(HistoryPage.routeName);
+                  },
+                  child: Text('History'),
+                ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(OfflineChessPage.routeName);
-                  },
-                  child: Text('Chessboard')),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(SettingPage.routeName);
-                  },
-                  child: Text('Setting')),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed(OfflineChessPage.routeName);
+                    },
+                    child: Text('Chessboard')),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(SettingPage.routeName);
+                    },
+                    child: Text('Setting')),
+              ),
             ],
           ),
         ),
