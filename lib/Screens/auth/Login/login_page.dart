@@ -1,6 +1,6 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/components/auth.dart';
-import 'package:clio_chess_amp_v2/components/Theme/login_signup_theme.dart';
+import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
 import 'package:clio_chess_amp_v2/Screens/Home/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginSignupTheme theme = LoginSignupTheme();
+    final MainTheme theme = MainTheme();
     final AuthenticatorStep initialStep = AuthenticatorStep.signIn;
     final HomePage home = HomePage();
     return Auth(

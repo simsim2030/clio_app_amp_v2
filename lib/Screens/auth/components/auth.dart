@@ -1,5 +1,6 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
-import 'package:clio_chess_amp_v2/components/Theme/login_signup_theme.dart';
+import 'package:clio_chess_amp_v2/Screens/Home/components/main_theme_material_app.dart';
+import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
 import 'package:clio_chess_amp_v2/Screens/Home/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class Auth extends StatelessWidget {
     required this.home,
   }) : super(key: key);
 
-  final LoginSignupTheme theme;
+  final MainTheme theme;
   final AuthenticatorStep initialStep;
   final HomePage home;
 
@@ -155,12 +156,8 @@ class Auth extends StatelessWidget {
             return null;
         }
       },
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: theme.customLightTheme,
-        darkTheme: theme.customDarkTheme,
-        themeMode: ThemeMode.system,
-        builder: Authenticator.builder(),
+      child: MainThemeMaterialApp(
+        theme: theme,
         home: home,
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class LoginSignupTheme {
+class MainTheme {
 // light theme
-  ThemeData customLightTheme = ThemeData(
+  ThemeData mainLightTheme = ThemeData(
     // app's colors scheme and brightness
     colorScheme: ColorScheme.fromSwatch(
       brightness: Brightness.light,
@@ -12,9 +12,14 @@ class LoginSignupTheme {
     indicatorColor: Colors.indigo,
     textTheme: const TextTheme(
       // text theme of the header on each step
+      headline1: TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 25,
+        color: Colors.white,
+      ),
       headline6: TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: 24,
+        fontSize: 25,
       ),
     ),
     // theme of the form fields for each step
@@ -32,16 +37,19 @@ class LoginSignupTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         padding:
-            MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.all(16)),
+            MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.all(10)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(),
+          ),
         ),
       ),
     ),
   );
 
 // dark theme
-  ThemeData customDarkTheme = ThemeData(
+  ThemeData mainDarkTheme = ThemeData(
     colorScheme: ColorScheme.fromSwatch(
       brightness: Brightness.dark,
       primarySwatch: Colors.indigo,

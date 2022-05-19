@@ -1,7 +1,6 @@
-import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
-import 'package:clio_chess_amp_v2/components/Theme/login_signup_theme.dart';
+import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
 
 import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +59,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final LoginSignupTheme theme = LoginSignupTheme();
+    final MainTheme theme = MainTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Clio Chess Auth',
@@ -75,7 +74,8 @@ class _MyAppState extends State<MyApp> {
         Locale('en', ''), // English, no country code
         Locale('es', ''), // Spanish, no country code
       ],
-
+      theme: theme.mainLightTheme,
+      darkTheme: theme.mainDarkTheme,
       home: WelcomeScreen(),
 
       // home: MainScreen(),
