@@ -1,6 +1,5 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
-import 'package:clio_chess_amp_v2/Screens/Home/components/main_theme_material_app.dart';
 import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineMode/offlinemode_screen.dart';
@@ -168,7 +167,7 @@ class Auth extends StatelessWidget {
       },
       // child: MainThemeMaterialApp(
       child: MaterialApp(
-        // theme: theme,
+        debugShowCheckedModeBanner: false,
         builder: Authenticator.builder(),
         theme: theme.mainLightTheme,
         darkTheme: theme.mainDarkTheme,
