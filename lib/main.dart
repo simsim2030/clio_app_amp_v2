@@ -1,6 +1,8 @@
+import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
+import 'package:clio_chess_amp_v2/Screens/auth/components/auth.dart';
 import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
 
 import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
@@ -62,40 +64,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final MainTheme theme = MainTheme();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Clio Chess Auth',
-      // Internatize language pack
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: [
-        Locale('en', ''), // English, no country code
-        Locale('es', ''), // Spanish, no country code
-      ],
-      theme: theme.mainLightTheme,
-      darkTheme: theme.mainDarkTheme,
-      // home: Navigator(pages: [MaterialPage(child: HomePage()),],
-      home: WelcomeScreen(),
-
-      // home: MainScreen(),
-      // initialRoute: '/',
-      routes: {
-        // TabScreen.routeName: (ctx) => TabScreen(),
-        // SettingPage.routeName: (ctx) => SettingPage(),
-        // HistoryPage.routeName: (ctx) => HistoryPage(),
-        OfflineChessPage.routeName: (ctx) => OfflineChessPage(),
-        LoginPage.routeName: (ctx) => LoginPage(),
-        SignupPage.routeName: (ctx) => SignupPage(),
-        OfflineModePage.routeName: (ctx) => OfflineModePage(),
-        ChessClockPage.routeName: (ctx) => ChessClockPage(),
-        // LiveChess.routeName: (ctx) => LiveChess(),
-        HomePage.routeName: (ctx) => LiveChess(),
-        // '/': (ctx) => MainScreen(),
-      },
+    final AuthenticatorStep initialStep = AuthenticatorStep.signIn;
+    final HomePage home = HomePage();
+    return Auth(
+      theme: theme,
+      initialStep: initialStep,
+      home: home,
     );
   }
 }

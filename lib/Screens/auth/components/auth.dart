@@ -27,12 +27,11 @@ class Auth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Authenticator(
       initialStep: initialStep,
       // builder used to show a custom sign in and sign up experience
       authenticatorBuilder: (BuildContext context, AuthenticatorState state) {
+        Size size = MediaQuery.of(context).size;
         const padding =
             EdgeInsets.only(left: 16, right: 16, top: 48, bottom: 16);
         switch (state.currentStep) {
@@ -45,13 +44,18 @@ class Auth extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       // app logo
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.03,
+                      ),
                       Center(
                         child: Image.asset(
                           "assets/images/Knight_background.jpg",
                           height: size.height * 0.3,
                         ),
                       ),
-                      SizedBox(height: size.height * 0.015),
+                      // SizedBox(
+                      //   height: MediaQuery.of(context).size.height * 0.03,
+                      // ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
