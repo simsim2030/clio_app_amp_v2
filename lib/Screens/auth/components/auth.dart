@@ -3,6 +3,7 @@ import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
 import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineMode/offlinemode_screen.dart';
+import 'package:clio_chess_amp_v2/Screens/Welcome/welcome_screen.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
 import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
@@ -167,6 +168,7 @@ class Auth extends StatelessWidget {
       },
       // child: MainThemeMaterialApp(
       child: MaterialApp(
+        initialRoute: '/welcome_screen',
         debugShowCheckedModeBanner: false,
         builder: Authenticator.builder(),
         theme: theme.mainLightTheme,
@@ -183,7 +185,11 @@ class Auth extends StatelessWidget {
           OfflineModePage.routeName: (ctx) => OfflineModePage(),
           ChessClockPage.routeName: (ctx) => ChessClockPage(),
           LiveChess.routeName: (ctx) => LiveChess(),
-          HomePage.routeName: (ctx) => HomePage(),
+          HomePage.routeName: (ctx) {
+            return const AuthenticatedView(
+              child: HomePage(),
+            );
+          },
         },
       ),
     );
