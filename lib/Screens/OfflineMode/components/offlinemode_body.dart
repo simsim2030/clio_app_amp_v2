@@ -1,4 +1,5 @@
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
+import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineMode/components/offlinemode_background.dart';
 import 'package:clio_chess_amp_v2/components/buttons/rounded_outlined_button.dart';
@@ -32,7 +33,7 @@ class OfflineModeBody extends StatelessWidget {
               text: "Chess Clock",
               textColor: Colors.white,
               onPressed: () {
-                Navigator.of(context).pushNamed(ChessClockPage.routeName);
+                Navigator.of(context).pushNamed(LiveChess.routeName);
               },
             ),
           ),

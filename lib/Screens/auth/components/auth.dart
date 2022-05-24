@@ -1,7 +1,16 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
+import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
 import 'package:clio_chess_amp_v2/Screens/Home/components/main_theme_material_app.dart';
+import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
+import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
+import 'package:clio_chess_amp_v2/Screens/OfflineMode/offlinemode_screen.dart';
+import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
+import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
 import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
 import 'package:clio_chess_amp_v2/Screens/Home/home_page.dart';
+import 'package:clio_chess_amp_v2/pages/history_page.dart';
+import 'package:clio_chess_amp_v2/pages/setting_page.dart';
+import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
 
 class Auth extends StatelessWidget {
@@ -19,6 +28,7 @@ class Auth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Authenticator(
       initialStep: initialStep,
       // builder used to show a custom sign in and sign up experience
@@ -156,9 +166,26 @@ class Auth extends StatelessWidget {
             return null;
         }
       },
-      child: MainThemeMaterialApp(
-        theme: theme,
+      // child: MainThemeMaterialApp(
+      child: MaterialApp(
+        // theme: theme,
+        builder: Authenticator.builder(),
+        theme: theme.mainLightTheme,
+        darkTheme: theme.mainDarkTheme,
+        themeMode: ThemeMode.system,
         home: home,
+        routes: {
+          TabScreen.routeName: (ctx) => TabScreen(),
+          SettingPage.routeName: (ctx) => SettingPage(),
+          HistoryPage.routeName: (ctx) => HistoryPage(),
+          OfflineChessPage.routeName: (ctx) => OfflineChessPage(),
+          LoginPage.routeName: (ctx) => LoginPage(),
+          SignupPage.routeName: (ctx) => SignupPage(),
+          OfflineModePage.routeName: (ctx) => OfflineModePage(),
+          ChessClockPage.routeName: (ctx) => ChessClockPage(),
+          LiveChess.routeName: (ctx) => LiveChess(),
+          HomePage.routeName: (ctx) => HomePage(),
+        },
       ),
     );
   }

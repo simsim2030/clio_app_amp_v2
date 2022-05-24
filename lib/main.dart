@@ -1,3 +1,4 @@
+import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
 import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
@@ -6,6 +7,7 @@ import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/ChessClock/chessclock.dart';
+import 'Screens/Home/home_page.dart';
 import 'Screens/OfflineChess/offline_chess_page.dart';
 import 'Screens/OfflineMode/offlinemode_screen.dart';
 import 'Screens/Welcome/welcome_screen.dart';
@@ -76,6 +78,7 @@ class _MyAppState extends State<MyApp> {
       ],
       theme: theme.mainLightTheme,
       darkTheme: theme.mainDarkTheme,
+      // home: Navigator(pages: [MaterialPage(child: HomePage()),],
       home: WelcomeScreen(),
 
       // home: MainScreen(),
@@ -89,6 +92,8 @@ class _MyAppState extends State<MyApp> {
         SignupPage.routeName: (ctx) => SignupPage(),
         OfflineModePage.routeName: (ctx) => OfflineModePage(),
         ChessClockPage.routeName: (ctx) => ChessClockPage(),
+        LiveChess.routeName: (ctx) => LiveChess(),
+        HomePage.routeName: (ctx) => HomePage(),
         // '/': (ctx) => MainScreen(),
       },
     );
