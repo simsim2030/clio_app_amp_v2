@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/main_drawer.dart';
+import '../../components/Drawer/main_drawer.dart';
 
 class SettingPage extends StatelessWidget {
   static const routeName = '/setting_page';

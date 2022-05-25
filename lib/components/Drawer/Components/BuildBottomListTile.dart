@@ -8,13 +8,13 @@ Widget buildBottomListTile(
   return ListTile(
     leading: Icon(
       icon,
-      size: 24,
+      size: 25,
     ),
     title: Text(
       title,
       style: TextStyle(
         fontFamily: 'RobotoCondensed',
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: FontWeight.w600,
       ),
     ),

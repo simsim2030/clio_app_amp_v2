@@ -1,5 +1,5 @@
 import 'dart:math';
-import '../../widgets/main_drawer.dart';
+import '../../components/Drawer/main_drawer.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_stateless_chessboard/flutter_stateless_chessboard.dart'

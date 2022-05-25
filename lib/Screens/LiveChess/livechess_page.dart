@@ -11,16 +11,13 @@ class LiveChess extends StatefulWidget {
 class _LiveChessState extends State<LiveChess> {
   @override
   Widget build(BuildContext context) {
-    return new WillPopScope(
-      onWillPop: () async => false,
-      child: new Scaffold(
-        appBar: AppBar(
-          title: Text('Live Chess'),
-        ),
-        body: Center(
-          child: Text(
-            'TODO: Live Chess',
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Live Chess'),
+      ),
+      body: Center(
+        child: Text(
+          'TODO: Live Chess',
         ),
       ),
     );

@@ -13,8 +13,8 @@ import 'Screens/Home/home_page.dart';
 import 'Screens/OfflineChess/offline_chess_page.dart';
 import 'Screens/OfflineMode/offlinemode_screen.dart';
 import 'Screens/Welcome/welcome_screen.dart';
-import 'pages/history_page.dart';
-import 'pages/setting_page.dart';
+import 'Screens/History/history_page.dart';
+import 'Screens/Settings/setting_page.dart';
 
 // Amplify Flutter Packages
 import 'package:amplify_flutter/amplify_flutter.dart';

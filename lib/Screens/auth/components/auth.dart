@@ -1,4 +1,5 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
+import 'package:clio_chess_amp_v2/Screens/Blog/blog_page.dart';
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
 import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
@@ -8,8 +9,8 @@ import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
 import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
 import 'package:clio_chess_amp_v2/Screens/Home/home_page.dart';
-import 'package:clio_chess_amp_v2/pages/history_page.dart';
-import 'package:clio_chess_amp_v2/pages/setting_page.dart';
+import 'package:clio_chess_amp_v2/Screens/History/history_page.dart';
+import 'package:clio_chess_amp_v2/Screens/Settings/setting_page.dart';
 import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -189,6 +190,7 @@ class Auth extends StatelessWidget {
           OfflineModePage.routeName: (ctx) => OfflineModePage(),
           ChessClockPage.routeName: (ctx) => ChessClockPage(),
           LiveChess.routeName: (ctx) => LiveChess(),
+          BlogPage.routename: (ctx) => BlogPage(),
           HomePage.routeName: (ctx) {
             return const AuthenticatedView(
               child: HomePage(),

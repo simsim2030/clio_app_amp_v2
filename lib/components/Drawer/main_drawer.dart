@@ -1,11 +1,14 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:clio_chess_amp_v2/components/Drawer/BuildBottomListTile.dart';
-import 'package:clio_chess_amp_v2/components/Drawer/BuildMainListTile.dart';
+import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
+import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
+import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
+import 'package:clio_chess_amp_v2/components/Drawer/Components/BuildBottomListTile.dart';
+import 'package:clio_chess_amp_v2/components/Drawer/Components/BuildMainListTile.dart';
+import 'package:clio_chess_amp_v2/Screens/History/history_page.dart';
+import 'package:clio_chess_amp_v2/Screens/Settings/setting_page.dart';
 import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
-import '../Screens/OfflineChess/offline_chess_page.dart';
-import '../pages/setting_page.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -33,11 +36,38 @@ class MainDrawer extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: <Widget>[
                 buildMainListTile(
+                  'Live Chess',
+                  Icons.apps_rounded,
+                  () {
+                    Navigator.of(context).pushNamed(LiveChess.routeName);
+                  },
+                ),
+                buildMainListTile(
+                  'History',
+                  Icons.history,
+                  () {
+                    Navigator.of(context).pushNamed(HistoryPage.routeName);
+                  },
+                ),
+                buildMainListTile(
+                  'Chess Clock',
+                  Icons.punch_clock,
+                  () {
+                    Navigator.of(context).pushNamed(ChessClockPage.routeName);
+                  },
+                ),
+                buildMainListTile(
                   'Chessboard',
                   Icons.apps_rounded,
                   () {
-                    Navigator.of(context)
-                        .pushReplacementNamed(TabScreen.routeName);
+                    Navigator.of(context).pushNamed(OfflineChessPage.routeName);
+                  },
+                ),
+                buildMainListTile(
+                  'Blog',
+                  Icons.newspaper,
+                  () {
+                    Navigator.of(context).pushNamed(TabScreen.routeName);
                   },
                 ),
                 buildMainListTile(
@@ -65,7 +95,8 @@ class MainDrawer extends StatelessWidget {
                     buildBottomListTile('Settings', Icons.settings, () {}),
                     buildBottomListTile('Sign out', Icons.logout, () {
                       Amplify.Auth.signOut(
-                          options: SignOutOptions(globalSignOut: true));
+                        options: SignOutOptions(globalSignOut: true),
+                      );
                     }),
                   ],
                 ),
