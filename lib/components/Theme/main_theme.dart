@@ -46,8 +46,19 @@ class MainTheme {
         ),
       ),
     ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color.fromARGB(255, 66, 66, 66),
+      iconTheme: IconThemeData(color: Colors.white),
+      actionsIconTheme: IconThemeData(color: Colors.white),
+      centerTitle: true,
+      elevation: 15,
+      titleTextStyle: TextStyle(
+        color: Colors.white,
+        fontSize: 22,
+        fontWeight: FontWeight.w700,
+      ),
+    ),
   );
-
 // dark theme
   ThemeData mainDarkTheme = ThemeData(
     colorScheme: ColorScheme.fromSwatch(

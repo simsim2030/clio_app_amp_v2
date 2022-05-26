@@ -9,6 +9,7 @@ Widget buildBottomListTile(
     leading: Icon(
       icon,
       size: 25,
+      color: Colors.white,
     ),
     title: Text(
       title,
@@ -16,6 +17,7 @@ Widget buildBottomListTile(
         fontFamily: 'RobotoCondensed',
         fontSize: 18,
         fontWeight: FontWeight.w600,
+        color: Colors.white,
       ),
     ),
     onTap: tapHandler,
