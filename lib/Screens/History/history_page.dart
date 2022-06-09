@@ -30,13 +30,12 @@ class _HistoryPageState extends State<HistoryPage> {
               ),
             ),
           ),
-          // ElevatedButton(
-          //   onPressed: () {
-          //     controller.loadFen(
-          //         'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2');
-          //   },
-          //   child: Text('go'),
-          // ),
+          ElevatedButton(
+            onPressed: () {
+              controller.makeMove(from: 'd2', to: 'd4');
+            },
+            child: Text('move'),
+          ),
           // ElevatedButton(
           //   onPressed: () {
           //     apiservice.getTODO('todoname');
