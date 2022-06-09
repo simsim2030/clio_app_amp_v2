@@ -37,15 +37,17 @@ dependencies:
 
   flutter_svg: "0.21.0-nullsafety.1"
 
-  flutter_stateless_chessboard: ^0.0.6
+  flutter_chess_board: ^1.0.1
+  flutter_stateless_chessboard: ^1.1.2
 
-  amplify_flutter: ^0.4.0
-  amplify_datastore: ^0.4.0
-  
-  amplify_auth_cognito: ^0.4.0
+  amplify_core: '<1.0.0'
+  amplify_flutter: ^0.5.0
+  amplify_datastore: ^0.5.0
+  amplify_api: ^0.5.0
+  amplify_auth_cognito: ^0.5.0
   amplify_authenticator: ^0.1.0
 
-  amplify_analytics_pinpoint: ^0.4.0
+  amplify_analytics_pinpoint: ^0.5.0
   
 dev_dependencies:
   flutter_test:

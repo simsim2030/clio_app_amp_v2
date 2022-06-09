@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter_chess_board/flutter_chess_board.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
+import 'package:clio_chess_amp_v2/services/api_service.dart';
 
 class HistoryPage extends StatefulWidget {
   static const routeName = '/history_page';
@@ -10,16 +9,59 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
+  ChessBoardController controller = ChessBoardController();
+  APIService apiservice = APIService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade700,
       appBar: AppBar(
-        title: Text('History Games'),
+        title: const Text('Chess Demo'),
       ),
-      body: Center(
-        child: Text(
-          'TODO: History List',
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: ChessBoard(
+                controller: controller,
+                boardColor: BoardColor.orange,
+                boardOrientation: PlayerColor.white,
+              ),
+            ),
+          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     controller.loadFen(
+          //         'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2');
+          //   },
+          //   child: Text('go'),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     apiservice.getTODO('todoname');
+          //   },
+          //   child: Text('To get'),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     apiservice.createTODO('d2d4');
+          //   },
+          //   child: Text('To create todo'),
+          // ),
+          ElevatedButton(
+            onPressed: () {
+              apiservice.createClioMoveList('d2d4');
+            },
+            child: Text('To create ML'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              apiservice.subscribe(controller);
+            },
+            child: Text('subscribe'),
+          ),
+        ],
       ),
     );
   }

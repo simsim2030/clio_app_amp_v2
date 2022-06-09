@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:flutter_stateless_chessboard/flutter_stateless_chessboard.dart';
+
 import '../../components/Drawer/main_drawer.dart';
 
 import 'package:flutter/material.dart';
@@ -24,20 +26,17 @@ class _OfflineChessState extends State<OfflineChessPage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         title: Text("Chessboard"),
       ),
-      drawer: MainDrawer(),
       body: Center(
         child: cb.Chessboard(
           fen: _fen,
           size: size,
-          orientation: cb.Color.WHITE,
           onMove: (move) {
             final nextFen = makeMove(_fen, {
               'from': move.from,
               'to': move.to,
-              'promotion': 'q',
+              'promotion': 'b',
             });
 
             if (nextFen != null) {
@@ -45,6 +44,36 @@ class _OfflineChessState extends State<OfflineChessPage> {
                 _fen = nextFen;
               });
             }
+          },
+          onPromote: () {
+            return showDialog<PieceType>(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text('Promotion'),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ListTile(
+                          title: Text("Queen"),
+                          onTap: () => Navigator.pop(context),
+                        ),
+                        ListTile(
+                          title: Text("Rook"),
+                          onTap: () => Navigator.pop(context),
+                        ),
+                        ListTile(
+                          title: Text("Bishop"),
+                          onTap: () => Navigator.pop(context),
+                        ),
+                        ListTile(
+                          title: Text("Knight"),
+                          onTap: () => Navigator.pop(context, PieceType.KNIGHT),
+                        ),
+                      ],
+                    ),
+                  );
+                });
           },
         ),
       ),

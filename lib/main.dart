@@ -1,9 +1,11 @@
+import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/components/auth.dart';
 import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
+import 'package:clio_chess_amp_v2/models/ModelProvider.dart';
 
 import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 // Generated in previous step
 import 'amplifyconfiguration.dart';
 
@@ -48,6 +50,7 @@ class _MyAppState extends State<MyApp> {
     // Add Pinpoint and Cognito Plugins, or any other plugins you want to use
     // AmplifyAnalyticsPinpoint analyticsPlugin = AmplifyAnalyticsPinpoint();
     AmplifyAuthCognito authPlugin = AmplifyAuthCognito();
+    Amplify.addPlugin(AmplifyAPI(modelProvider: ModelProvider.instance));
 
     // await Amplify.addPlugins([authPlugin, analyticsPlugin]);
     await Amplify.addPlugins([authPlugin]);

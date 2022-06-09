@@ -101,7 +101,6 @@ class MainDrawer extends StatelessWidget {
                       Divider(),
                       buildBottomListTile(
                           'Help and Feedback', Icons.help, () {}),
-                      buildBottomListTile('Settings', Icons.settings, () {}),
                       buildBottomListTile(
                         'Sign out',
                         Icons.logout,

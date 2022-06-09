@@ -2,6 +2,7 @@ import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/Screens/Blog/blog_page.dart';
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
 import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
+import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_history_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineMode/offlinemode_screen.dart';
 import 'package:clio_chess_amp_v2/Screens/Welcome/welcome_screen.dart';
@@ -191,6 +192,7 @@ class Auth extends StatelessWidget {
           ChessClockPage.routeName: (ctx) => ChessClockPage(),
           LiveChess.routeName: (ctx) => LiveChess(),
           BlogPage.routename: (ctx) => BlogPage(),
+          OfflineChessPageHistory.routeName: (ctx) => OfflineChessPageHistory(),
           HomePage.routeName: (ctx) {
             return const AuthenticatedView(
               child: HomePage(),
