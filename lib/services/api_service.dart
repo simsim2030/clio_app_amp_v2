@@ -32,7 +32,7 @@ class APIService {
       ClioMove chessmove = ClioMove(
         movenumber: 1,
         move: 'd2d4',
-        board_fen: '4k2r/6r1/8/8/8/8/3R4/R3K3 w Qk - 0 1',
+        board_fen: '4k2r/6r1/8/8/8/8/8/R3K3 w Qk - 0 1',
       );
       final request = ModelMutations.create(chessmove);
       final response = await Amplify.API.mutate(request: request).response;

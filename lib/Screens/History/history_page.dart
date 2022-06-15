@@ -12,6 +12,13 @@ class _HistoryPageState extends State<HistoryPage> {
   ChessBoardController controller = ChessBoardController();
   APIService apiservice = APIService();
 
+  // initiate subscription
+  @override
+  void initState() {
+    apiservice.subscribe(controller);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,30 +43,19 @@ class _HistoryPageState extends State<HistoryPage> {
             },
             child: Text('move'),
           ),
+
           // ElevatedButton(
           //   onPressed: () {
-          //     apiservice.getTODO('todoname');
+          //     apiservice.createClioMoveList('d2d4');
           //   },
-          //   child: Text('To get'),
+          //   child: Text('To create ML'),
           // ),
           // ElevatedButton(
           //   onPressed: () {
-          //     apiservice.createTODO('d2d4');
+          //     apiservice.subscribe(controller);
           //   },
-          //   child: Text('To create todo'),
+          //   child: Text('subscribe'),
           // ),
-          ElevatedButton(
-            onPressed: () {
-              apiservice.createClioMoveList('d2d4');
-            },
-            child: Text('To create ML'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              apiservice.subscribe(controller);
-            },
-            child: Text('subscribe'),
-          ),
         ],
       ),
     );
