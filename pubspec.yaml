@@ -48,11 +48,20 @@ dependencies:
   amplify_authenticator: ^0.1.0
 
   amplify_analytics_pinpoint: ^0.5.0
+
+  flutter_native_splash: ^2.0.1+1
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
   intl: ^0.17.0
+
+
+
+flutter_native_splash:
+  color: "#21626d" # white colour
+  image: assets/splash/splash3.PNG
+
 flutter_launcher_name:
   name: "Clio Chess"
   # The "flutter_lints" package below contains a set of recommended lints to

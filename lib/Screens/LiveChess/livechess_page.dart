@@ -1,3 +1,4 @@
+import 'package:clio_chess_amp_v2/services/api_service.dart';
 import 'package:flutter/material.dart';
 
 class LiveChess extends StatefulWidget {
@@ -8,6 +9,7 @@ class LiveChess extends StatefulWidget {
 }
 
 class _LiveChessState extends State<LiveChess> {
+  APIService apiservice = APIService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,8 +17,11 @@ class _LiveChessState extends State<LiveChess> {
         title: Text('Live Chess'),
       ),
       body: Center(
-        child: Text(
-          'TODO: Live Chess',
+        child: ElevatedButton(
+          onPressed: () {
+            apiservice.createClioMoveList('d2d4');
+          },
+          child: Text('To create ML'),
         ),
       ),
     );

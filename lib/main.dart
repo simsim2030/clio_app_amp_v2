@@ -1,22 +1,14 @@
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
-import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
-import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
-import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
+
 import 'package:clio_chess_amp_v2/Screens/auth/components/auth.dart';
 import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
 import 'package:clio_chess_amp_v2/models/ModelProvider.dart';
 
-import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import 'Screens/ChessClock/chessclock.dart';
 import 'Screens/Home/home_page.dart';
-import 'Screens/OfflineChess/offline_chess_page.dart';
-import 'Screens/OfflineMode/offlinemode_screen.dart';
-import 'Screens/Welcome/welcome_screen.dart';
-import 'Screens/History/history_page.dart';
-import 'Screens/Settings/setting_page.dart';
 
 // Amplify Flutter Packages
 import 'package:amplify_flutter/amplify_flutter.dart';
@@ -28,8 +20,16 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 // Generated in previous step
 import 'amplifyconfiguration.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterNativeSplash.removeAfter(initialization);
+
   runApp(const MyApp());
+}
+
+Future initialization(BuildContext? context) async {
+  await Future.delayed(Duration(seconds: 3));
 }
 
 class MyApp extends StatefulWidget {
