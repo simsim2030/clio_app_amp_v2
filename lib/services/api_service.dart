@@ -32,7 +32,7 @@ class APIService {
       ClioMove chessmove = ClioMove(
         movenumber: 1,
         move: 'd2d4',
-        board_fen: '4k2r/6r1/8/8/8/8/8/R3K3 w Qk - 0 1',
+        board_fen: '8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1',
       );
       final request = ModelMutations.create(chessmove);
       final response = await Amplify.API.mutate(request: request).response;
@@ -119,7 +119,7 @@ class APIService {
         ClioMove? chessmove = event.data;
         String? move = chessmove!.board_fen;
         print('move received: ${move}');
-        controller.loadFen(move!);
+        controller.loadFen(move);
       },
       onError: (Object e) => print('Error in subscription stream: $e'),
     );

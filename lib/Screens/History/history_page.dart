@@ -50,6 +50,13 @@ class _HistoryPageState extends State<HistoryPage> {
             },
             child: Text('To create ML'),
           ),
+
+          ElevatedButton(
+            onPressed: () {
+              controller.loadFen('8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1');
+            },
+            child: Text('To load fen'),
+          ),
           // ElevatedButton(
           //   onPressed: () {
           //     apiservice.subscribe(controller);

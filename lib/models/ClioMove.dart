@@ -42,8 +42,17 @@ class ClioMove extends Model {
     return id;
   }
   
-  String? get board_fen {
-    return _board_fen;
+  String get board_fen {
+    try {
+      return _board_fen!;
+    } catch(e) {
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   int get movenumber {
@@ -80,9 +89,9 @@ class ClioMove extends Model {
     return _updatedAt;
   }
   
-  const ClioMove._internal({required this.id, board_fen, required movenumber, required move, createdAt, updatedAt}): _board_fen = board_fen, _movenumber = movenumber, _move = move, _createdAt = createdAt, _updatedAt = updatedAt;
+  const ClioMove._internal({required this.id, required board_fen, required movenumber, required move, createdAt, updatedAt}): _board_fen = board_fen, _movenumber = movenumber, _move = move, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory ClioMove({String? id, String? board_fen, required int movenumber, required String move}) {
+  factory ClioMove({String? id, required String board_fen, required int movenumber, required String move}) {
     return ClioMove._internal(
       id: id == null ? UUID.getUUID() : id,
       board_fen: board_fen,
@@ -166,7 +175,7 @@ class ClioMove extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: ClioMove.BOARD_FEN,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     

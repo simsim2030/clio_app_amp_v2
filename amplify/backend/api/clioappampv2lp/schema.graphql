@@ -6,7 +6,7 @@ type Todo @model @auth(rules: [{allow: private}]) {
 
 type ClioMove @model @auth(rules: [{allow: public}]) {
   id: ID!
-  board_fen: String
+  board_fen: String!
   movenumber: Int!
   move: String!
 } 
