@@ -18,8 +18,9 @@ class _LiveChessState extends State<LiveChess> {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-            apiservice.createClioMoveList('d2d4');
+          onPressed: () async {
+            String sub = await apiservice.fetchCurrentUserAttributes();
+            apiservice.createClioMoveList('d2d4', sub);
           },
           child: Text('To create ML'),
         ),

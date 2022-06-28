@@ -3,19 +3,14 @@
   "serviceConfiguration": {
     "apiName": "clioappampv2lp",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-7f1c8fdf-0237-4859-9046-d460894e0de7/amplify/backend/api/clioappampv2lp/schema.graphql",
+    "gqlSchemaPath": "C:\\Users\\asus\\Desktop\\ChessClock\\GitHub\\Amplify\\Mobile\\clio_app_amp_v2\\amplify\\backend\\api\\clioappampv2lp\\schema.graphql",
     "defaultAuthType": {
-      "mode": "API_KEY",
-      "keyDescription": "api key description",
-      "expirationTime": 30
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authclioappampv2lp46bf64a8"
     },
     "additionalAuthTypes": [
       {
         "mode": "AWS_IAM"
-      },
-      {
-        "mode": "AMAZON_COGNITO_USER_POOLS",
-        "cognitoUserPoolId": "authclioappampv2lp46bf64a8"
       }
     ],
     "conflictResolution": {
