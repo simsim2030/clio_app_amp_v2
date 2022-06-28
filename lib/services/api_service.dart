@@ -30,7 +30,7 @@ class APIService {
   //   }
   // }
 
-  Future<void> createClioMoveList(String move, String sub) async {
+  Future<String> createClioMoveList(String move, String sub) async {
     try {
       ClioMove chessmove = ClioMove(
         movenumber: 1,
@@ -44,12 +44,13 @@ class APIService {
       ClioMove? createdClioMoveList = response.data;
       if (createdClioMoveList == null) {
         print('errors: ' + response.errors.toString());
-        return;
+        return '';
       }
       print('Mutation result: ' + createdClioMoveList.id);
-      print('User: ' + sub);
+      return createdClioMoveList.id;
     } on ApiException catch (e) {
       print('Mutation failed: $e');
+      return '';
     }
   }
 

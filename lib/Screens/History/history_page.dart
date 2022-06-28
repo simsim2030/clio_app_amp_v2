@@ -31,7 +31,9 @@ class _HistoryPageState extends State<HistoryPage> {
   userID_current() async {
     String user_id = await _userID();
     String user_id_cur = '$user_id';
-    apiservice.createClioMoveList('initial', user_id_cur);
+    String game_id =
+        await apiservice.createClioMoveList('initial', user_id_cur);
+    print('game_id_cur: ' + game_id);
     print('user_id_cur: $user_id');
   }
 
