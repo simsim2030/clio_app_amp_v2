@@ -61,24 +61,27 @@ class _HistoryPageState extends State<HistoryPage> {
             },
             child: Text('move'),
           ),
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     Future<String> future_sub =
+          //         apiservice.fetchCurrentUserAttributes();
+          //     String sub = await apiservice.fetchCurrentUserAttributes();
+
+          //     apiservice.createClioMoveList('d2d4', sub);
+          //   },
+          //   child: Text('To create ML'),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     controller.loadFen('8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1');
+          //   },
+          //   child: Text('To load fen'),
+          // ),
           ElevatedButton(
             onPressed: () async {
-              Future<String> future_sub =
-                  apiservice.fetchCurrentUserAttributes();
               String sub = await apiservice.fetchCurrentUserAttributes();
-
               apiservice.createClioMoveList('d2d4', sub);
             },
-            child: Text('To create ML'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              controller.loadFen('8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1');
-            },
-            child: Text('To load fen'),
-          ),
-          ElevatedButton(
-            onPressed: () {},
             child: Text('get users attribute'),
           ),
         ],
