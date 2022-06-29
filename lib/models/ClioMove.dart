@@ -43,17 +43,8 @@ class ClioMove extends Model {
     return id;
   }
   
-  String get board_fen {
-    try {
-      return _board_fen!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  String? get board_fen {
+    return _board_fen;
   }
   
   int get movenumber {
@@ -82,8 +73,17 @@ class ClioMove extends Model {
     }
   }
   
-  String? get user {
-    return _user;
+  String get user {
+    try {
+      return _user!;
+    } catch(e) {
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   TemporalDateTime? get createdAt {
@@ -94,9 +94,9 @@ class ClioMove extends Model {
     return _updatedAt;
   }
   
-  const ClioMove._internal({required this.id, required board_fen, required movenumber, required move, user, createdAt, updatedAt}): _board_fen = board_fen, _movenumber = movenumber, _move = move, _user = user, _createdAt = createdAt, _updatedAt = updatedAt;
+  const ClioMove._internal({required this.id, board_fen, required movenumber, required move, required user, createdAt, updatedAt}): _board_fen = board_fen, _movenumber = movenumber, _move = move, _user = user, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory ClioMove({String? id, required String board_fen, required int movenumber, required String move, String? user}) {
+  factory ClioMove({String? id, String? board_fen, required int movenumber, required String move, required String user}) {
     return ClioMove._internal(
       id: id == null ? UUID.getUUID() : id,
       board_fen: board_fen,
@@ -173,13 +173,8 @@ class ClioMove extends Model {
     
     modelSchemaDefinition.authRules = [
       AuthRule(
-<<<<<<< HEAD
         authStrategy: AuthStrategy.PUBLIC,
         provider: AuthRuleProvider.APIKEY,
-=======
-        authStrategy: AuthStrategy.PRIVATE,
-        provider: AuthRuleProvider.USERPOOLS,
->>>>>>> 0fbb56fcb386f9914694ea597f1e855266d7220c
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,
@@ -192,7 +187,7 @@ class ClioMove extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: ClioMove.BOARD_FEN,
-      isRequired: true,
+      isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
@@ -210,7 +205,7 @@ class ClioMove extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: ClioMove.USER,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     

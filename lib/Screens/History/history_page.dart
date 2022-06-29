@@ -19,23 +19,23 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   void initState() {
     apiservice.subscribe(controller);
-    userID_current();
+    // userID_current();
     super.initState();
   }
 
-  Future<String> _userID() async {
-    Future<String> _sub = apiservice.fetchCurrentUserAttributes();
-    return _sub;
-  }
+  // Future<String> _userID() async {
+  //   Future<String> _sub = apiservice.fetchCurrentUserAttributes();
+  //   return _sub;
+  // }
 
-  userID_current() async {
-    String user_id = await _userID();
-    String user_id_cur = '$user_id';
-    String game_id =
-        await apiservice.createClioMoveList('initial', user_id_cur);
-    print('game_id_cur: ' + game_id);
-    print('user_id_cur: $user_id');
-  }
+  // userID_current() async {
+  //   String user_id = await _userID();
+  //   String user_id_cur = '$user_id';
+  //   // String game_id = await apiservice.createClioMoveList('initial');
+  //   apiservice.createClioMoveList('initial');
+  //   // print('game_id_cur: ' + game_id);
+  //   print('user_id_cur: $user_id');
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,6 @@ class _HistoryPageState extends State<HistoryPage> {
             onPressed: () async {
               Future<String> future_sub =
                   apiservice.fetchCurrentUserAttributes();
-
               String sub = await apiservice.fetchCurrentUserAttributes();
 
               apiservice.createClioMoveList('d2d4', sub);

@@ -4,20 +4,10 @@ type Todo @model @aws_cognito_user_pools {
   description: String
 }
 
-<<<<<<< HEAD
 type ClioMove @model @auth(rules: [{allow: public, provider: apiKey}]) {
   id: ID!
   board_fen: String
   movenumber: Int!
   move: String!
+  user: String!
 } 
-=======
-type ClioMove @model @auth(rules:[ 
-  { allow: private, provider: userPools } ]) {
-    id: ID!
-    board_fen: String! 
-    movenumber: Int! 
-    move: String! 
-    user: Future<String>
-} 
->>>>>>> 0fbb56fcb386f9914694ea597f1e855266d7220c

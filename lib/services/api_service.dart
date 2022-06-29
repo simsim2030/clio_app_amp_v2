@@ -35,7 +35,7 @@ class APIService {
       ClioMove chessmove = ClioMove(
         movenumber: 1,
         move: 'd2d4',
-        board_fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+        board_fen: 'rnbqkbnr/pppppppp/8/8/8/8/8/RNBQKBNR w KQkq - 0 1',
         user: sub,
       );
       final request = ModelMutations.create(chessmove);
@@ -46,7 +46,7 @@ class APIService {
         print('errors: ' + response.errors.toString());
         return '';
       }
-      print('Mutation result: ' + createdClioMoveList.id);
+      print('Mutation result: ' + createdClioMoveList.move);
       return createdClioMoveList.id;
     } on ApiException catch (e) {
       print('Mutation failed: $e');
@@ -99,7 +99,7 @@ class APIService {
   // StreamSubscription<GraphQLResponse<ClioMove>>? subscription;
 
   Future<void> subscribe(ChessBoardController controller) async {
-    final subscriptionRequest = ModelSubscriptions.onUpdate(ClioMove.classType);
+    final subscriptionRequest = ModelSubscriptions.onCreate(ClioMove.classType);
     final Stream<GraphQLResponse<ClioMove>> operation = Amplify.API.subscribe(
       subscriptionRequest,
       onEstablished: () => print('Subscription established'),
@@ -111,7 +111,7 @@ class APIService {
         ClioMove? chessmove = event.data;
         String? move = chessmove!.board_fen;
         print('move received: ${move}');
-        controller.loadFen(move);
+        controller.loadFen(move!);
       },
       onError: (Object e) => print('Error in subscription stream: $e'),
     );

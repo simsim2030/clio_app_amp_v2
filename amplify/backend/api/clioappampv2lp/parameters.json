@@ -1,16 +1,1 @@
-{
-  "AppSyncApiName": "clioappampv2lp",
-  "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false,
-  "AuthCognitoUserPoolId": {
-    "Fn::GetAtt": [
-      "authclioappampv2lp46bf64a8",
-      "Outputs.UserPoolId"
-    ]
-  },
-<<<<<<< HEAD
-  "AuthModeLastUpdated": "2022-06-29T06:36:42.380Z"
-=======
-  "AuthModeLastUpdated": "2022-06-27T09:31:29.887Z"
->>>>>>> 0fbb56fcb386f9914694ea597f1e855266d7220c
-}
+{}
