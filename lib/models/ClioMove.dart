@@ -31,6 +31,7 @@ class ClioMove extends Model {
   final String? _board_fen;
   final int? _movenumber;
   final String? _move;
+  final String? _user;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -42,8 +43,17 @@ class ClioMove extends Model {
     return id;
   }
   
-  String? get board_fen {
-    return _board_fen;
+  String get board_fen {
+    try {
+      return _board_fen!;
+    } catch(e) {
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   int get movenumber {
@@ -72,6 +82,10 @@ class ClioMove extends Model {
     }
   }
   
+  String? get user {
+    return _user;
+  }
+  
   TemporalDateTime? get createdAt {
     return _createdAt;
   }
@@ -80,14 +94,15 @@ class ClioMove extends Model {
     return _updatedAt;
   }
   
-  const ClioMove._internal({required this.id, board_fen, required movenumber, required move, createdAt, updatedAt}): _board_fen = board_fen, _movenumber = movenumber, _move = move, _createdAt = createdAt, _updatedAt = updatedAt;
+  const ClioMove._internal({required this.id, required board_fen, required movenumber, required move, user, createdAt, updatedAt}): _board_fen = board_fen, _movenumber = movenumber, _move = move, _user = user, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory ClioMove({String? id, String? board_fen, required int movenumber, required String move}) {
+  factory ClioMove({String? id, required String board_fen, required int movenumber, required String move, String? user}) {
     return ClioMove._internal(
       id: id == null ? UUID.getUUID() : id,
       board_fen: board_fen,
       movenumber: movenumber,
-      move: move);
+      move: move,
+      user: user);
   }
   
   bool equals(Object other) {
@@ -101,7 +116,8 @@ class ClioMove extends Model {
       id == other.id &&
       _board_fen == other._board_fen &&
       _movenumber == other._movenumber &&
-      _move == other._move;
+      _move == other._move &&
+      _user == other._user;
   }
   
   @override
@@ -116,6 +132,7 @@ class ClioMove extends Model {
     buffer.write("board_fen=" + "$_board_fen" + ", ");
     buffer.write("movenumber=" + (_movenumber != null ? _movenumber!.toString() : "null") + ", ");
     buffer.write("move=" + "$_move" + ", ");
+    buffer.write("user=" + "$_user" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -123,12 +140,13 @@ class ClioMove extends Model {
     return buffer.toString();
   }
   
-  ClioMove copyWith({String? id, String? board_fen, int? movenumber, String? move}) {
+  ClioMove copyWith({String? id, String? board_fen, int? movenumber, String? move, String? user}) {
     return ClioMove._internal(
       id: id ?? this.id,
       board_fen: board_fen ?? this.board_fen,
       movenumber: movenumber ?? this.movenumber,
-      move: move ?? this.move);
+      move: move ?? this.move,
+      user: user ?? this.user);
   }
   
   ClioMove.fromJson(Map<String, dynamic> json)  
@@ -136,25 +154,32 @@ class ClioMove extends Model {
       _board_fen = json['board_fen'],
       _movenumber = (json['movenumber'] as num?)?.toInt(),
       _move = json['move'],
+      _user = json['user'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'board_fen': _board_fen, 'movenumber': _movenumber, 'move': _move, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'board_fen': _board_fen, 'movenumber': _movenumber, 'move': _move, 'user': _user, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "clioMove.id");
   static final QueryField BOARD_FEN = QueryField(fieldName: "board_fen");
   static final QueryField MOVENUMBER = QueryField(fieldName: "movenumber");
   static final QueryField MOVE = QueryField(fieldName: "move");
+  static final QueryField USER = QueryField(fieldName: "user");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "ClioMove";
     modelSchemaDefinition.pluralName = "ClioMoves";
     
     modelSchemaDefinition.authRules = [
       AuthRule(
+<<<<<<< HEAD
         authStrategy: AuthStrategy.PUBLIC,
         provider: AuthRuleProvider.APIKEY,
+=======
+        authStrategy: AuthStrategy.PRIVATE,
+        provider: AuthRuleProvider.USERPOOLS,
+>>>>>>> 0fbb56fcb386f9914694ea597f1e855266d7220c
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,
@@ -167,7 +192,7 @@ class ClioMove extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: ClioMove.BOARD_FEN,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
@@ -180,6 +205,12 @@ class ClioMove extends Model {
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: ClioMove.MOVE,
       isRequired: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: ClioMove.USER,
+      isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     

@@ -12,7 +12,6 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "api": {
         "clioappampv2lp": {
-            "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
