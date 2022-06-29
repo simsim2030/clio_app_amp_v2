@@ -1,1 +1,8 @@
-{}
+{
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authclioappampv2lp46bf64a8",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
