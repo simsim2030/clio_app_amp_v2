@@ -106,6 +106,8 @@ class APIService {
   //   }
   // }
 
+  // StreamSubscription<GraphQLResponse<ClioMove>>? subscription;
+
   Future<void> subscribe(ChessBoardController controller) async {
     final subscriptionRequest = ModelSubscriptions.onCreate(ClioMove.classType);
     final Stream<GraphQLResponse<ClioMove>> operation = Amplify.API.subscribe(

@@ -3,11 +3,12 @@
   "serviceConfiguration": {
     "apiName": "clioappampv2lp",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-7f1c8fdf-0237-4859-9046-d460894e0de7/amplify/backend/api/clioappampv2lp/schema.graphql",
+    "gqlSchemaPath": "C:\\Users\\asus\\Desktop\\ChessClock\\GitHub\\Amplify\\Mobile\\clio_app_amp_v2\\amplify\\backend\\api\\clioappampv2lp\\schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "keyDescription": "api key description",
-      "expirationTime": 30
+      "expirationTime": 30,
+      "apiKeyExpirationDate": "2022-07-29T06:36:35.160Z",
+      "keyDescription": ""
     },
     "additionalAuthTypes": [
       {

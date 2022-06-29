@@ -154,6 +154,7 @@ class ClioMove extends Model {
     modelSchemaDefinition.authRules = [
       AuthRule(
         authStrategy: AuthStrategy.PUBLIC,
+        provider: AuthRuleProvider.APIKEY,
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,
