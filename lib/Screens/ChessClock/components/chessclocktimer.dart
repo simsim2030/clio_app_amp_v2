@@ -26,7 +26,7 @@ class ChessClockTimer extends StatelessWidget {
       return Colors.red;
     }
 
-    return Colors.black.withAlpha(30);
+    return Colors.white24;
   }
 
   String _getAvailableTimeText() {
@@ -46,6 +46,7 @@ class ChessClockTimer extends StatelessWidget {
               _getAvailableTimeText(),
               style: TextStyle(
                 fontSize: 70,
+                color: Color.fromARGB(220, 255, 255, 255),
               ),
             ),
           ),

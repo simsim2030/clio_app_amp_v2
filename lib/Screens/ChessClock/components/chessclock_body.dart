@@ -1,4 +1,5 @@
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
+import 'timecontrol_setting_dialog.dart';
 
 import 'package:flutter/material.dart';
 import 'chessclocktimer.dart';
@@ -60,11 +61,12 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade900,
       body: Column(
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(15.0),
               child: ChessClockTimer(
                 onPressed: _onTopPressed,
                 isReversed: true,
@@ -88,7 +90,11 @@ class _ChessClockBodyState extends State<ChessClockBody> {
                       Scaffold.of(context).showSnackBar(mySnackbar);
                     });
                   },
-                  icon: Icon(Icons.settings),
+                  icon: Icon(
+                    Icons.settings,
+                    color: Color.fromARGB(220, 255, 255, 255),
+                    size: 42,
+                  ),
                 ),
               ),
               Center(
@@ -108,7 +114,8 @@ class _ChessClockBodyState extends State<ChessClockBody> {
                   },
                   icon: Icon(
                     Icons.restart_alt,
-                    size: 45,
+                    color: Color.fromARGB(220, 255, 255, 255),
+                    size: 42,
                   ),
                 ),
               ),
@@ -121,7 +128,8 @@ class _ChessClockBodyState extends State<ChessClockBody> {
                   },
                   icon: Icon(
                     Icons.pause,
-                    size: 45,
+                    color: Color.fromARGB(220, 255, 255, 255),
+                    size: 42,
                   ),
                 ),
               ),
@@ -142,61 +150,5 @@ class _ChessClockBodyState extends State<ChessClockBody> {
         ],
       ),
     );
-  }
-
-  Future<String?> createAlertDialog(BuildContext context) {
-    TextEditingController controller = TextEditingController();
-
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text("Time Control"),
-            content: IntrinsicHeight(
-              child: Column(
-                children: [
-                  // TextField(
-                  //   controller: controller,
-                  // ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text('5|5'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text('10|10'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text('15|15'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              MaterialButton(
-                elevation: 5.0,
-                child: Text('Done'),
-                onPressed: () {
-                  Navigator.of(context).pop(controller.text.toString());
-                },
-              )
-            ],
-          );
-        });
   }
 }
