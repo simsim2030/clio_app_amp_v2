@@ -15,7 +15,7 @@ class ChessClock {
   });
 
   void start() {
-    //Timer is already running
+    // Timer is already running
     if (_startedAt != -1) {
       return;
     }
@@ -23,13 +23,12 @@ class ChessClock {
   }
 
   void pause() {
-    //Timer is already paused
+    // Timer is already paused
     if (_startedAt == -1) {
       return;
     }
     timeControlMillis += incrementsMillis;
-    int _millisElapsed_old = _millisElapsed;
-    _millisElapsed = getNowMillis() - _startedAt + _millisElapsed_old;
+    _millisElapsed = getNowMillis() - _startedAt + _millisElapsed;
     _startedAt = -1;
   }
 
