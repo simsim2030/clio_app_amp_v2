@@ -83,11 +83,15 @@ class _ChessClockBodyState extends State<ChessClockBody> {
               Center(
                 child: IconButton(
                   padding: EdgeInsets.zero,
-                  onPressed: () {
-                    createAlertDialog(context).then((value) {
+                  onPressed: () async {
+                    await createAlertDialog(context).then((value) {
                       SnackBar mySnackbar =
                           SnackBar(content: Text("Hello $value"));
                       Scaffold.of(context).showSnackBar(mySnackbar);
+                      _topClock.timeControlMillis = value!;
+                      _topClock.millisElapsed = 0;
+                      _bottomClock.timeControlMillis = value;
+                      _bottomClock.millisElapsed = 0;
                     });
                   },
                   icon: Icon(

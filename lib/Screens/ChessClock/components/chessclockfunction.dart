@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 class ChessClock {
   int _startedAt = -1;
-  int _millisElapsed = 0;
+  int millisElapsed = 0;
 
   final Function getNowMillis;
   int timeControlMillis;
@@ -12,6 +12,7 @@ class ChessClock {
     required this.getNowMillis,
     required this.timeControlMillis,
     this.incrementsMillis = 0,
+    this.millisElapsed = 0,
   });
 
   void start() {
@@ -28,16 +29,16 @@ class ChessClock {
       return;
     }
     timeControlMillis += incrementsMillis;
-    _millisElapsed = getNowMillis() - _startedAt + _millisElapsed;
+    millisElapsed = getNowMillis() - _startedAt + millisElapsed;
     _startedAt = -1;
   }
 
   int getMillisElapsed() {
     // Timer is not running
     if (_startedAt == -1) {
-      return _millisElapsed;
+      return millisElapsed;
     }
-    return getNowMillis() - _startedAt + _millisElapsed;
+    return getNowMillis() - _startedAt + millisElapsed;
   }
 
   bool isTicking() {

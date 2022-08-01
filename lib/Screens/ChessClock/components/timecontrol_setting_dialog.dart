@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-Future<String?> createAlertDialog(BuildContext context) {
+Future<int?> createAlertDialog(BuildContext context) async {
   TextEditingController controller = TextEditingController();
 
   List<bool> _selections = [true, false, false, false];
-  List textList = ['5 mins', '10 mins', '15 mins', 'Custom'];
+  List textList = ['5 mins', '10 mins', '15 mins', '1 hr'];
+  List _timecontrolMin = [300000, 600000, 900000, 3600000];
+  int _timeControl = 300000;
 
-  return showDialog(
+  return await showDialog(
       context: context,
       builder: (context) {
         return StatefulBuilder(
@@ -23,33 +25,6 @@ Future<String?> createAlertDialog(BuildContext context) {
                     children: [
                       // TextField(
                       //   controller: controller,
-                      // ),
-                      // ToggleButtons(
-                      //   children: [
-                      //     Text('5 mins'),
-                      //     Text('10 mins'),
-                      //     Text('15 mins'),
-                      //   ],
-                      //   isSelected: _selections,
-                      //   onPressed: (int newIndex) {
-                      //     setState(() {
-                      //       for (int index = 0;
-                      //           index < _selections.length;
-                      //           index++) {
-                      //         if (index == newIndex) {
-                      //           _selections[index] = true;
-                      //         } else {
-                      //           _selections[index] = false;
-                      //         }
-                      //       }
-                      //     });
-                      //   },
-                      //   color: Colors.grey,
-                      //   selectedColor: Colors.red,
-                      //   fillColor: Colors.lightBlueAccent,
-                      //   borderColor: Colors.lightBlueAccent,
-                      //   selectedBorderColor: Colors.red,
-                      //   borderRadius: BorderRadius.all(Radius.circular(10)),
                       // ),
 
                       Ink(
@@ -71,6 +46,9 @@ Future<String?> createAlertDialog(BuildContext context) {
                                       indexBtn++) {
                                     if (indexBtn == index) {
                                       _selections[indexBtn] = true;
+                                      // press though the mins and return the duration
+                                      return _timeControl =
+                                          _timecontrolMin[indexBtn];
                                     } else {
                                       _selections[indexBtn] = false;
                                     }
@@ -122,7 +100,7 @@ Future<String?> createAlertDialog(BuildContext context) {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop(controller.text.toString());
+                        Navigator.of(context).pop(_timeControl);
                       },
                     ),
                   ),
