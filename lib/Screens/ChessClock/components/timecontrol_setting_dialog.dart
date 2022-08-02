@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'customtimer.dart';
+
 Future<int?> createAlertDialog(BuildContext context) async {
   TextEditingController controller = TextEditingController();
 
   List<bool> _selections = [true, false, false, false];
-  List textList = ['5 mins', '10 mins', '15 mins', '1 hr'];
-  List _timecontrolMin = [300000, 600000, 900000, 3600000];
+  List textList = ['5 mins', '10 mins', '15 mins', '20 mins'];
+  List _timecontrolMin = [300000, 600000, 900000, 1200000];
   int _timeControl = 300000;
 
   return await showDialog(
@@ -84,7 +86,24 @@ Future<int?> createAlertDialog(BuildContext context) async {
                             );
                           }),
                         ),
-                      )
+                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(top: 20.0),
+                      //   child: ElevatedButton(
+                      //     style: ElevatedButton.styleFrom(
+                      //       primary: Colors.white24,
+                      //     ),
+                      //     onPressed: () {
+                      //       customTimeDialog(context).then((value) {
+                      //         _timeControl = value! * 1000;
+                      //       });
+                      //     },
+                      //     child: Text(
+                      //       'Custom',
+                      //       style: TextStyle(fontSize: 21),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -96,7 +115,7 @@ Future<int?> createAlertDialog(BuildContext context) async {
                         'Done',
                         style: TextStyle(
                           color: Color.fromARGB(220, 255, 255, 255),
-                          fontSize: 20,
+                          fontSize: 22,
                         ),
                       ),
                       onPressed: () {
