@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'customtimer.dart';
 
 Future<int?> createAlertDialog(BuildContext context) async {
-  TextEditingController controller = TextEditingController();
-
   List<bool> _selections = [true, false, false, false];
   List textList = ['5 mins', '10 mins', '15 mins', '20 mins'];
   List _timecontrolMin = [300000, 600000, 900000, 1200000];
