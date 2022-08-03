@@ -1,6 +1,6 @@
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
 
-import 'timecontrol_setting_dialog.dart';
+import 'customTimeControl/timecontrol_setting_dialog.dart';
 
 import 'package:flutter/material.dart';
 import 'chessclocktimer.dart';
