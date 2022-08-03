@@ -48,9 +48,8 @@ Future<int?> createAlertDialog(BuildContext context) async {
                                       indexBtn++) {
                                     if (indexBtn == index) {
                                       _selections[indexBtn] = true;
-                                      // press though the mins and return the duration
-                                      return _timeControl =
-                                          _timecontrolMin[indexBtn];
+                                      // press through the mins and return the duration
+                                      _timeControl = _timecontrolMin[indexBtn];
                                     } else {
                                       _selections[indexBtn] = false;
                                     }
