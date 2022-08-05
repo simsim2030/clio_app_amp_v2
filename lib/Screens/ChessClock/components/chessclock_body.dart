@@ -1,6 +1,8 @@
 import 'package:clio_chess_amp_v2/Screens/ChessClock/components/button/chessclocksettingbtn.dart';
+import 'package:clio_chess_amp_v2/services/api_service.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_chess_board/flutter_chess_board.dart';
 import 'chessclocktimer.dart';
 import 'chessclockfunction.dart';
 import 'dart:async';
@@ -11,6 +13,9 @@ class ChessClockBody extends StatefulWidget {
 }
 
 class _ChessClockBodyState extends State<ChessClockBody> {
+  ChessBoardController controller = ChessBoardController();
+  APIService apiservice = APIService();
+
   ChessClock _topClock = ChessClock(
     getNowMillis: () => DateTime.now().millisecondsSinceEpoch,
     timeControlMillis: 5 * 60 * 1000,
@@ -26,12 +31,11 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   String timecontrol = '';
 
   late Timer _timer;
-  late TextEditingController controller;
 
   @override
   void initState() {
     super.initState();
-    controller = TextEditingController();
+
     _timer = Timer.periodic(
       Duration(milliseconds: 200),
       (timer) {
@@ -47,14 +51,43 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     _timer.cancel();
   }
 
+  int movenumber = 0;
+  int _firstpress = 0;
+  int _presscount_top = 0;
+  int _presscount_bot = 0;
+
   void _onTopPressed() {
     _topClock.pause();
     _bottomClock.start();
+
+    if (_presscount_top <= 0) {
+      apiservice.createChessMove(movenumber);
+      movenumber++;
+      if (_firstpress == 0) {
+        _presscount_top++;
+        _firstpress++;
+      } else {
+        _presscount_top++;
+        _presscount_bot--;
+      }
+    }
   }
 
   void _onBottomPressed() {
     _topClock.start();
     _bottomClock.pause();
+
+    if (_presscount_bot <= 0) {
+      apiservice.createChessMove(movenumber);
+      movenumber++;
+      if (_firstpress == 0) {
+        _presscount_bot++;
+        _firstpress++;
+      } else {
+        _presscount_bot++;
+        _presscount_top--;
+      }
+    }
   }
 
   @override

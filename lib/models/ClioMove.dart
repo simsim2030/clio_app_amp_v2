@@ -47,43 +47,16 @@ class ClioMove extends Model {
     return _board_fen;
   }
   
-  int get movenumber {
-    try {
-      return _movenumber!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  int? get movenumber {
+    return _movenumber;
   }
   
-  String get move {
-    try {
-      return _move!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  String? get move {
+    return _move;
   }
   
-  String get user {
-    try {
-      return _user!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  String? get user {
+    return _user;
   }
   
   TemporalDateTime? get createdAt {
@@ -94,9 +67,9 @@ class ClioMove extends Model {
     return _updatedAt;
   }
   
-  const ClioMove._internal({required this.id, board_fen, required movenumber, required move, required user, createdAt, updatedAt}): _board_fen = board_fen, _movenumber = movenumber, _move = move, _user = user, _createdAt = createdAt, _updatedAt = updatedAt;
+  const ClioMove._internal({required this.id, board_fen, movenumber, move, user, createdAt, updatedAt}): _board_fen = board_fen, _movenumber = movenumber, _move = move, _user = user, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory ClioMove({String? id, String? board_fen, required int movenumber, required String move, required String user}) {
+  factory ClioMove({String? id, String? board_fen, int? movenumber, String? move, String? user}) {
     return ClioMove._internal(
       id: id == null ? UUID.getUUID() : id,
       board_fen: board_fen,
@@ -193,19 +166,19 @@ class ClioMove extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: ClioMove.MOVENUMBER,
-      isRequired: true,
+      isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.int)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: ClioMove.MOVE,
-      isRequired: true,
+      isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: ClioMove.USER,
-      isRequired: true,
+      isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     

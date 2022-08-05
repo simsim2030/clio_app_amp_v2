@@ -46,8 +46,30 @@ class APIService {
         print('errors: ' + response.errors.toString());
         return '';
       }
-      print('Mutation result: ' + createdClioMoveList.move);
+      print('Mutation result: ' + createdClioMoveList.id);
       return createdClioMoveList.id;
+    } on ApiException catch (e) {
+      print('Mutation failed: $e');
+      return '';
+    }
+  }
+
+  Future<String> createChessMove(int movenumber) async {
+    print('movernumber = ' + movenumber.toString());
+    try {
+      ClioMove moveNumber = ClioMove(
+        movenumber: movenumber,
+      );
+      final request = ModelMutations.create(moveNumber);
+      final response = await Amplify.API.mutate(request: request).response;
+
+      ClioMove? createdChessMove = response.data;
+      if (createdChessMove == null) {
+        print('errors: ' + response.errors.toString());
+        return '';
+      }
+      print('Mutation result: ' + createdChessMove.id);
+      return createdChessMove.id;
     } on ApiException catch (e) {
       print('Mutation failed: $e');
       return '';
@@ -75,7 +97,7 @@ class APIService {
         print('errors: ' + response.errors.toString());
         return;
       }
-      print('Query result: ' + chessmove.move);
+      print('Query result: ' + chessmove.id);
     } on ApiException catch (e) {
       print('Query failed: $e');
     }

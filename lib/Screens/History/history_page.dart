@@ -37,6 +37,8 @@ class _HistoryPageState extends State<HistoryPage> {
   //   print('user_id_cur: $user_id');
   // }
 
+  int mobernumber = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,6 +85,12 @@ class _HistoryPageState extends State<HistoryPage> {
               apiservice.createClioMoveList('d2d4', sub);
             },
             child: Text('get users attribute'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              apiservice.createChessMove(1);
+            },
+            child: Text('mover number'),
           ),
         ],
       ),
