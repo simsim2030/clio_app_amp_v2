@@ -125,6 +125,16 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              _connect();
+            },
+            icon: Icon(Icons.connect_without_contact_rounded),
+          )
+        ],
+      ),
       body: Column(
         children: [
           Expanded(
