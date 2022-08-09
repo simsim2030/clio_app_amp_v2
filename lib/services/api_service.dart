@@ -118,7 +118,7 @@ class APIService {
     }
   }
 
-  // StreamSubscription<GraphQLResponse<ClioMove>>? subscription;
+  StreamSubscription<GraphQLResponse<ClioMove>>? subscription;
 
   Future<void> subscribe(ChessBoardController controller) async {
     final subscriptionRequest = ModelSubscriptions.onCreate(ClioMove.classType);
@@ -126,8 +126,7 @@ class APIService {
       subscriptionRequest,
       onEstablished: () => print('Subscription established'),
     );
-    final StreamSubscription<GraphQLResponse<ClioMove>> subscription =
-        operation.listen(
+    subscription = operation.listen(
       (event) {
         print('Subscription event data received: ${event.data}');
         ClioMove? chessmove = event.data;
@@ -142,6 +141,10 @@ class APIService {
 
     // Cancel the subscription and close the underlying stream.
     // subscription.cancel();
+  }
+
+  void unsubscribe() {
+    subscription!.cancel();
   }
 
   Future<String> fetchCurrentUserAttributes() async {

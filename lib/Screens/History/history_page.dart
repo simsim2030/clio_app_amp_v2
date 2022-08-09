@@ -45,6 +45,12 @@ class _HistoryPageState extends State<HistoryPage> {
       backgroundColor: Colors.grey.shade700,
       appBar: AppBar(
         title: const Text('Chess Demo'),
+        leading: BackButton(
+          onPressed: () {
+            Navigator.pop(context);
+            apiservice.unsubscribe();
+          },
+        ),
       ),
       body: Column(
         children: [
@@ -91,6 +97,12 @@ class _HistoryPageState extends State<HistoryPage> {
               apiservice.createChessMove(1);
             },
             child: Text('mover number'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              apiservice.unsubscribe();
+            },
+            child: Text('unsubcribe'),
           ),
         ],
       ),
