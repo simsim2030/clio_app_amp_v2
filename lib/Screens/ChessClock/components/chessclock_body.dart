@@ -22,16 +22,17 @@ class ChessClockBody extends StatefulWidget {
 }
 
 class _ChessClockBodyState extends State<ChessClockBody> {
-  String statusText = "Status Text";
-  bool isConnected = false;
-  TextEditingController idTextController = TextEditingController();
+  // Initialize Chess board Contorller
+  ChessBoardController controller = ChessBoardController();
 
+  // Initialize AWS api and IoT connection
+  APIService apiservice = APIService();
   final MqttServerClient client = MqttServerClient(
       'a3s43fchdeum50-ats.iot.ap-southeast-2.amazonaws.com', '');
+  String statusText = "Status Text";
+  bool isConnected = false;
 
-  ChessBoardController controller = ChessBoardController();
-  APIService apiservice = APIService();
-
+  // Initialize chess clock timer display
   ChessClock _topClock = ChessClock(
     getNowMillis: () => DateTime.now().millisecondsSinceEpoch,
     timeControlMillis: 5 * 60 * 1000,
@@ -45,17 +46,22 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   );
 
   String timecontrol = '';
-
   late Timer _timer;
 
+  // Timer Logic default values
+  int movenumber = 0;
+  int _firstpress = 0;
+  int _presscount_top = 0;
+  int _presscount_bot = 0;
+
+  // Uniqu device ID for each Clio
   String deviceID = '12345';
 
+  // Init State
   @override
   void initState() {
     super.initState();
     apiservice.unsubscribe;
-
-    // _connect();
 
     _timer = Timer.periodic(
       Duration(milliseconds: 200),
@@ -70,55 +76,6 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     controller.dispose();
     super.dispose();
     _timer.cancel();
-  }
-
-  int movenumber = 0;
-  int _firstpress = 0;
-  int _presscount_top = 0;
-  int _presscount_bot = 0;
-
-  void _onTopPressed() {
-    _topClock.pause();
-    _bottomClock.start();
-
-    if (_presscount_top <= 0) {
-      apiservice.createChessMove(movenumber);
-      movenumber++;
-      if (_firstpress == 0) {
-        _presscount_top++;
-        _firstpress++;
-      } else {
-        _presscount_top++;
-        _presscount_bot--;
-      }
-    }
-    // Trigger
-    const pubTopic = 'esp32/sub';
-    final builder = MqttClientPayloadBuilder();
-    builder.addString('0');
-    client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
-  }
-
-  void _onBottomPressed() {
-    _topClock.start();
-    _bottomClock.pause();
-
-    if (_presscount_bot <= 0) {
-      apiservice.createChessMove(movenumber);
-      movenumber++;
-      if (_firstpress == 0) {
-        _presscount_bot++;
-        _firstpress++;
-      } else {
-        _presscount_bot++;
-        _presscount_top--;
-      }
-    }
-    // Trigger
-    const pubTopic = 'esp32/sub';
-    final builder = MqttClientPayloadBuilder();
-    builder.addString('1');
-    client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
   }
 
   @override
@@ -163,30 +120,6 @@ class _ChessClockBodyState extends State<ChessClockBody> {
               ),
             ),
           ),
-          // ElevatedButton(
-          //   onPressed: () {
-          //     apiservice.unsubscribe();
-          //   },
-          //   child: Text('unsubcribe'),
-          // ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          //   child: TextFormField(
-          //       enabled: !isConnected,
-          //       controller: idTextController,
-          //       decoration: InputDecoration(
-          //           border: UnderlineInputBorder(),
-          //           labelText: 'MQTT Client Id',
-          //           labelStyle: TextStyle(fontSize: 10),
-          //           suffixIcon: IconButton(
-          //             icon: Icon(Icons.subdirectory_arrow_left),
-          //             onPressed: _connect,
-          //           ))),
-          // ),
-          // ElevatedButton(
-          //   onPressed: _connect,
-          //   child: Text('connect device'),
-          // ),
           isConnected
               ? TextButton(onPressed: _disconnect, child: Text('Disconnect'))
               : Container()
@@ -195,21 +128,52 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     );
   }
 
-  Widget footer() {
-    return Expanded(
-      child: Container(
-        alignment: Alignment.centerRight,
-        padding: const EdgeInsets.only(right: 16),
-        child: Text(
-          statusText,
-          style: TextStyle(
-              fontWeight: FontWeight.normal, color: Colors.amberAccent),
-        ),
-      ),
-      flex: 1,
-    );
+  // Timer Press Logic
+  void _onTopPressed() {
+    _topClock.pause();
+    _bottomClock.start();
+
+    if (_presscount_top <= 0) {
+      apiservice.createChessMove(movenumber);
+      movenumber++;
+      if (_firstpress == 0) {
+        _presscount_top++;
+        _firstpress++;
+      } else {
+        _presscount_top++;
+        _presscount_bot--;
+      }
+    }
+    // Trigger
+    const pubTopic = 'esp32/sub';
+    final builder = MqttClientPayloadBuilder();
+    builder.addString('0');
+    client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
   }
 
+  void _onBottomPressed() {
+    _topClock.start();
+    _bottomClock.pause();
+
+    if (_presscount_bot <= 0) {
+      apiservice.createChessMove(movenumber);
+      movenumber++;
+      if (_firstpress == 0) {
+        _presscount_bot++;
+        _firstpress++;
+      } else {
+        _presscount_bot++;
+        _presscount_top--;
+      }
+    }
+    // Trigger
+    const pubTopic = 'esp32/sub';
+    final builder = MqttClientPayloadBuilder();
+    builder.addString('1');
+    client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
+  }
+
+  // IOT Devic Connection
   _connect() async {
     // if (idTextController.text.trim().isNotEmpty) {
     ProgressDialog progressDialog = ProgressDialog(context,
@@ -265,19 +229,6 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     } else {
       return false;
     }
-
-    // const topic = 'esp32/sub';
-    // print('EXAMPLE::Subscribing to the Dart/Mqtt_client/testtopic topic');
-    // client.subscribe(topic, MqttQos.atMostOnce);
-
-    // final builder1 = MqttClientPayloadBuilder();
-    // builder1.addString('Hello from mqtt_client topic 1 sadafweegsegwg');
-    // print('EXAMPLE:: <<<< PUBLISH 1 >>>>');
-    // client.publishMessage(
-    //   topic,
-    //   MqttQos.atMostOnce,
-    //   builder1.payload!,
-    // );
 
     return true;
   }
