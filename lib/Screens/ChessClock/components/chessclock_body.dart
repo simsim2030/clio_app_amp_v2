@@ -78,18 +78,37 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     _timer.cancel();
   }
 
+  bool _iotConnected = false;
+
+  void iotConnectionChange() {
+    setState(() {
+      _iotConnected = !_iotConnected;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
         actions: [
-          IconButton(
-            onPressed: () {
-              _connect();
-            },
-            icon: Icon(Icons.connect_without_contact_rounded),
-          )
+          (_iotConnected == false)
+              ? IconButton(
+                  onPressed: () {
+                    _connect();
+                    iotConnectionChange();
+                  },
+                  icon: Icon(Icons.connect_without_contact_rounded),
+                  color: Colors.grey,
+                )
+              : IconButton(
+                  onPressed: () {
+                    _disconnect();
+                    iotConnectionChange();
+                  },
+                  icon: Icon(Icons.connect_without_contact_rounded),
+                  color: Colors.greenAccent[400],
+                )
         ],
       ),
       body: Column(
@@ -120,9 +139,6 @@ class _ChessClockBodyState extends State<ChessClockBody> {
               ),
             ),
           ),
-          isConnected
-              ? TextButton(onPressed: _disconnect, child: Text('Disconnect'))
-              : Container()
         ],
       ),
     );
@@ -190,6 +206,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
 
     isConnected = await mqttConnect(deviceID);
     progressDialog.dismiss();
+
     // }
   }
 
