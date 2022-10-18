@@ -4,7 +4,7 @@ type Todo @model @aws_cognito_user_pools {
   description: String
 }
 
-type ClioMove @model @auth(rules: [{allow: public, provider: apiKey}]) {
+type ClioMove @model @auth(rules: [{allow: owner} {allow:groups, groups: ["Users"]}]) {
   id: ID!
   board_fen: String
   movenumber: Int

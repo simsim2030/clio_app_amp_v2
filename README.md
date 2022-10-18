@@ -19,6 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 To change the rules of the Auth (i.e. api key or Cognito User pool authorization)
 https://docs.amplify.aws/lib/restapi/authz/q/platform/flutter/#api-key
+https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html
 
 Amplify -> backend -> api -> clioappampv2lp -> schema.graphl
 
