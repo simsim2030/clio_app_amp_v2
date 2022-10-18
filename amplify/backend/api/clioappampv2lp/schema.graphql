@@ -11,3 +11,13 @@ type ClioMove @model @auth(rules: [{allow: owner} {allow:groups, groups: ["Users
   move: String
   user: String
 } 
+
+type MyGames @model @auth(rules: [{allow: owner} {allow:groups, groups: ["Users"]}]) {
+  id: ID!
+  Title: String!
+  white: String!
+  black: String!
+  date: String!
+  downloaded: Boolean
+  user: String
+} 

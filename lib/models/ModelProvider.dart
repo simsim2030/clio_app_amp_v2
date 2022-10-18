@@ -21,16 +21,18 @@
 
 import 'package:amplify_core/amplify_core.dart';
 import 'ClioMove.dart';
+import 'MyGames.dart';
 import 'Todo.dart';
 
 export 'ClioMove.dart';
+export 'MyGames.dart';
 export 'Todo.dart';
 
 class ModelProvider implements ModelProviderInterface {
   @override
-  String version = "c7291d031d8fc6cca02f3444d22e1e37";
+  String version = "be6fc437f1c4792512e60370a7ed3ef4";
   @override
-  List<ModelSchema> modelSchemas = [ClioMove.schema, Todo.schema];
+  List<ModelSchema> modelSchemas = [ClioMove.schema, MyGames.schema, Todo.schema];
   static final ModelProvider _instance = ModelProvider();
   @override
   List<ModelSchema> customTypeSchemas = [];
@@ -41,6 +43,8 @@ class ModelProvider implements ModelProviderInterface {
     switch(modelName) {
       case "ClioMove":
         return ClioMove.classType;
+      case "MyGames":
+        return MyGames.classType;
       case "Todo":
         return Todo.classType;
       default:

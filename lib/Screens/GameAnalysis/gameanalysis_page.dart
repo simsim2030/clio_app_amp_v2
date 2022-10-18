@@ -16,13 +16,23 @@ class _GameAnalysisState extends State<GameAnalysis> {
       appBar: AppBar(
         title: Text('Live Chess'),
       ),
-      body: ListView(
+      body: Column(
         children: [
-          ListTile(
-            title: Text('Game 1 - 20/09/2015'),
-            subtitle: Text('Sim - Calvin'),
-            leading: Icon(Icons.label),
+          Expanded(
+            child: ListView(
+              children: [
+                ListTile(
+                  title: Text('Game 1 - 20/09/2015'),
+                  subtitle: Text('Sim - Calvin'),
+                  leading: Icon(Icons.label),
+                ),
+              ],
+            ),
           ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text('update test'),
+          )
         ],
       ),
     );
