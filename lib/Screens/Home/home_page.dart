@@ -1,8 +1,8 @@
 import 'package:clio_chess_amp_v2/Screens/Blog/blog_page.dart';
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
-import 'package:clio_chess_amp_v2/Screens/History/history_page.dart';
+import 'package:clio_chess_amp_v2/Screens/LiveChessAnalysis/livechessanalysis_page.dart';
 import 'package:clio_chess_amp_v2/Screens/Home/components/home_flat_button.dart';
-import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
+import 'package:clio_chess_amp_v2/Screens/GameAnalysis/gameanalysis_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/Settings/setting_page.dart';
 import 'package:clio_chess_amp_v2/components/Drawer/main_drawer.dart';
@@ -31,19 +31,20 @@ class _HomePageState extends State<HomePage> {
           children: [
             HomePageFlatButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(LiveChess.routeName);
+                Navigator.of(context)
+                    .pushNamed(LiveChessAnalysisPage.routeName);
               },
               image: 'assets/images/2DChess.png',
               icon: Icons.apps_rounded,
-              title: 'Live Chess',
+              title: 'Live Chess Analysis',
             ),
             HomePageFlatButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(HistoryPage.routeName);
+                Navigator.of(context).pushNamed(GameAnalysis.routeName);
               },
               image: 'assets/images/2DChess.png',
               icon: Icons.history,
-              title: 'History',
+              title: 'Post Game Analysis',
             ),
             HomePageFlatButton(
               onPressed: () {

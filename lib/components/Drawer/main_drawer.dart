@@ -1,11 +1,12 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
-import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
+import 'package:clio_chess_amp_v2/Screens/GameAnalysis/gameanalysis_page.dart';
+import 'package:clio_chess_amp_v2/Screens/LiveChessAnalysis/livechessanalysis_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
 import 'package:clio_chess_amp_v2/components/Drawer/Components/BuildBottomListTile.dart';
 import 'package:clio_chess_amp_v2/components/Drawer/Components/BuildMainListTile.dart';
-import 'package:clio_chess_amp_v2/Screens/History/history_page.dart';
+
 import 'package:clio_chess_amp_v2/Screens/Settings/setting_page.dart';
 import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
@@ -43,14 +44,15 @@ class MainDrawer extends StatelessWidget {
                       'Live Chess',
                       Icons.apps_rounded,
                       () {
-                        Navigator.of(context).pushNamed(LiveChess.routeName);
+                        Navigator.of(context).pushNamed(GameAnalysis.routeName);
                       },
                     ),
                     buildMainListTile(
                       'History',
                       Icons.history,
                       () {
-                        Navigator.of(context).pushNamed(HistoryPage.routeName);
+                        Navigator.of(context)
+                            .pushNamed(LiveChessAnalysisPage.routeName);
                       },
                     ),
                     buildMainListTile(

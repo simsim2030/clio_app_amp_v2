@@ -5,13 +5,13 @@ import 'dart:async';
 import 'package:clio_chess_amp_v2/services/api_service.dart';
 import 'package:amplify_datastore_plugin_interface/amplify_datastore_plugin_interface.dart';
 
-class HistoryPage extends StatefulWidget {
-  static const routeName = '/history_page';
+class LiveChessAnalysisPage extends StatefulWidget {
+  static const routeName = '/livechessanalysis_page';
   @override
-  _HistoryPageState createState() => _HistoryPageState();
+  _LiveChessAnalysisPageState createState() => _LiveChessAnalysisPageState();
 }
 
-class _HistoryPageState extends State<HistoryPage> {
+class _LiveChessAnalysisPageState extends State<LiveChessAnalysisPage> {
   ChessBoardController controller = ChessBoardController();
   APIService apiservice = APIService();
 
@@ -63,12 +63,14 @@ class _HistoryPageState extends State<HistoryPage> {
               ),
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              controller.makeMove(from: 'd2', to: 'd4');
-            },
-            child: Text('move'),
-          ),
+          //
+          // ElevatedButton(
+          //   onPressed: () {
+          //     controller.makeMove(from: 'd2', to: 'd4');
+          //   },
+          //   child: Text('move'),
+          // ),
+          //
           // ElevatedButton(
           //   onPressed: () async {
           //     Future<String> future_sub =
@@ -85,25 +87,27 @@ class _HistoryPageState extends State<HistoryPage> {
           //   },
           //   child: Text('To load fen'),
           // ),
-          ElevatedButton(
-            onPressed: () async {
-              String sub = await apiservice.fetchCurrentUserAttributes();
-              apiservice.createClioMoveList('d2d4', sub);
-            },
-            child: Text('get users attribute'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              apiservice.createChessMove(1);
-            },
-            child: Text('mover number'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              apiservice.unsubscribe();
-            },
-            child: Text('unsubcribe'),
-          ),
+          //
+          //
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     String sub = await apiservice.fetchCurrentUserAttributes();
+          //     apiservice.createClioMoveList('d2d4', sub);
+          //   },
+          //   child: Text('get users attribute'),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     apiservice.createChessMove(1);
+          //   },
+          //   child: Text('mover number'),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     apiservice.unsubscribe();
+          //   },
+          //   child: Text('unsubcribe'),
+          // ),
         ],
       ),
     );

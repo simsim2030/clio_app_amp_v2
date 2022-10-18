@@ -1,7 +1,8 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/Screens/Blog/blog_page.dart';
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
-import 'package:clio_chess_amp_v2/Screens/LiveChess/livechess_page.dart';
+import 'package:clio_chess_amp_v2/Screens/GameAnalysis/gameanalysis_page.dart';
+import 'package:clio_chess_amp_v2/Screens/LiveChessAnalysis/livechessanalysis_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_history_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineMode/offlinemode_screen.dart';
@@ -10,7 +11,6 @@ import 'package:clio_chess_amp_v2/Screens/auth/Login/login_page.dart';
 import 'package:clio_chess_amp_v2/Screens/auth/Signup/signup_page.dart';
 import 'package:clio_chess_amp_v2/components/Theme/main_theme.dart';
 import 'package:clio_chess_amp_v2/Screens/Home/home_page.dart';
-import 'package:clio_chess_amp_v2/Screens/History/history_page.dart';
 import 'package:clio_chess_amp_v2/Screens/Settings/setting_page.dart';
 import 'package:clio_chess_amp_v2/pages/tab_menu.dart';
 import 'package:flutter/material.dart';
@@ -184,13 +184,13 @@ class Auth extends StatelessWidget {
         routes: {
           TabScreen.routeName: (ctx) => TabScreen(),
           SettingPage.routeName: (ctx) => SettingPage(),
-          HistoryPage.routeName: (ctx) => HistoryPage(),
+          LiveChessAnalysisPage.routeName: (ctx) => LiveChessAnalysisPage(),
           OfflineChessPage.routeName: (ctx) => OfflineChessPage(),
           LoginPage.routeName: (ctx) => LoginPage(),
           SignupPage.routeName: (ctx) => SignupPage(),
           OfflineModePage.routeName: (ctx) => OfflineModePage(),
           ChessClockPage.routeName: (ctx) => ChessClockPage(),
-          LiveChess.routeName: (ctx) => LiveChess(),
+          GameAnalysis.routeName: (ctx) => GameAnalysis(),
           BlogPage.routename: (ctx) => BlogPage(),
           OfflineChessPageHistory.routeName: (ctx) => OfflineChessPageHistory(),
           HomePage.routeName: (ctx) {
