@@ -16,14 +16,14 @@ class _GameAnalysisState extends State<GameAnalysis> {
       appBar: AppBar(
         title: Text('Live Chess'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            String sub = await apiservice.fetchCurrentUserAttributes();
-            apiservice.createClioMoveList('d2d4', sub);
-          },
-          child: Text('To create ML'),
-        ),
+      body: ListView(
+        children: [
+          ListTile(
+            title: Text('Game 1 - 20/09/2015'),
+            subtitle: Text('Sim - Calvin'),
+            leading: Icon(Icons.label),
+          ),
+        ],
       ),
     );
   }

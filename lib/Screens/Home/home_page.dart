@@ -6,7 +6,6 @@ import 'package:clio_chess_amp_v2/Screens/GameAnalysis/gameanalysis_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/Settings/setting_page.dart';
 import 'package:clio_chess_amp_v2/components/Drawer/main_drawer.dart';
-import 'package:clio_chess_amp_v2/services/api_service.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,12 +30,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             HomePageFlatButton(
               onPressed: () {
-                Navigator.of(context)
-                    .pushNamed(LiveChessAnalysisPage.routeName);
+                Navigator.of(context).pushNamed(ChessClockPage.routeName);
               },
-              image: 'assets/images/2DChess.png',
-              icon: Icons.apps_rounded,
-              title: 'Live Chess Analysis',
+              image: 'assets/images/chessclock2D.png',
+              icon: Icons.punch_clock,
+              title: 'Chess Clock',
             ),
             HomePageFlatButton(
               onPressed: () {
@@ -48,11 +46,12 @@ class _HomePageState extends State<HomePage> {
             ),
             HomePageFlatButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(ChessClockPage.routeName);
+                Navigator.of(context)
+                    .pushNamed(LiveChessAnalysisPage.routeName);
               },
-              image: 'assets/images/chessclock2D.png',
-              icon: Icons.punch_clock,
-              title: 'Chess Clock',
+              image: 'assets/images/2DChess.png',
+              icon: Icons.apps_rounded,
+              title: 'Live Chess Analysis',
             ),
             HomePageFlatButton(
               onPressed: () {
