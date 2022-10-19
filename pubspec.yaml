@@ -56,10 +56,7 @@ dependencies:
   logger: ^1.1.0
   flutter_riverpod: ^1.0.3
   image_picker: ^0.8.5+3
-<<<<<<< HEAD
   cached_network_image: ^3.2.0
-=======
->>>>>>> c468921250052491e060731c8c4115fe94df3938
    
 dev_dependencies:
   flutter_test:
