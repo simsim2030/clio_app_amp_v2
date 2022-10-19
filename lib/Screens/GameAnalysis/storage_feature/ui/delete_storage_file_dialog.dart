@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class DeleteStorageFileDialog extends StatelessWidget {
+<<<<<<< HEAD
   const DeleteStorageFileDialog({Key? key}) : super(key: key);
+=======
+  const DeleteStorageFileDialog({
+    super.key,
+  });
+>>>>>>> c468921250052491e060731c8c4115fe94df3938
 
   @override
   Widget build(BuildContext context) {
