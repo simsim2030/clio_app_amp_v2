@@ -1,0 +1,14 @@
+{
+  "resourceName": "PNGStorage",
+  "policyUUID": "603f9729",
+  "bucketName": "clioappampv2lpdf2bf2238936422f86204f3851d3fc90",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

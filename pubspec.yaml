@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -43,17 +43,20 @@ dependencies:
   flutter_stateless_chessboard: ^1.1.2
 
   amplify_core: '<1.0.0'
-  amplify_flutter: ^0.5.0
-  amplify_datastore: ^0.5.0
-  amplify_api: ^0.5.0
-  amplify_auth_cognito: ^0.5.0
-  amplify_authenticator: ^0.1.0
-  
-
-  amplify_analytics_pinpoint: ^0.5.0
-
+  amplify_flutter: ^0.6.0
+  amplify_datastore: ^0.6.0
+  amplify_api: ^0.6.0
+  amplify_auth_cognito: ^0.6.0
+  amplify_authenticator: ^0.2.0
+  amplify_storage_s3: ^0.6.9
+  amplify_analytics_pinpoint: ^0.6.0
   flutter_native_splash: ^2.0.1+1
-  
+
+  freezed_annotation: ^2.1.0
+  logger: ^1.1.0
+  flutter_riverpod: ^1.0.3
+  image_picker: ^0.8.5+3
+   
 dev_dependencies:
   flutter_test:
     sdk: flutter
