@@ -94,7 +94,7 @@ class Auth extends StatelessWidget {
               persistentFooterButtons: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: <Widget>[
                     const Text(
                       'Don\'t have an account?',
                       style: TextStyle(
@@ -102,6 +102,9 @@ class Auth extends StatelessWidget {
                       ),
                     ),
                     TextButton(
+                      style: TextButton.styleFrom(
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
                       onPressed: () => state.changeStep(
                         AuthenticatorStep.signUp,
                       ),
@@ -190,7 +193,7 @@ class Auth extends StatelessWidget {
           SignupPage.routeName: (ctx) => SignupPage(),
           OfflineModePage.routeName: (ctx) => OfflineModePage(),
           ChessClockPage.routeName: (ctx) => ChessClockPage(),
-          GameAnalysis.routeName: (ctx) => GameAnalysis(),
+          GameAnalysis.routeName: (_) => GameAnalysis(),
           BlogPage.routename: (ctx) => BlogPage(),
           OfflineChessPageHistory.routeName: (ctx) => OfflineChessPageHistory(),
           HomePage.routeName: (ctx) {
