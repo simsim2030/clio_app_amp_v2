@@ -7,6 +7,7 @@ import 'package:clio_chess_amp_v2/models/ModelProvider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'Screens/Home/home_page.dart';
 
@@ -24,7 +25,7 @@ Future main() async {
 
   FlutterNativeSplash.removeAfter(initialization);
 
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 Future initialization(BuildContext? context) async {

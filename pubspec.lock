@@ -252,11 +252,7 @@ packages:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "1.0.5"
-=======
-    version: "1.0.4"
->>>>>>> c468921250052491e060731c8c4115fe94df3938
   event_bus:
     dependency: transitive
     description:
@@ -458,11 +454,7 @@ packages:
       name: lint
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "1.9.0"
-=======
-    version: "1.8.2"
->>>>>>> c468921250052491e060731c8c4115fe94df3938
   logger:
     dependency: "direct main"
     description:
@@ -589,7 +581,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.7"
-<<<<<<< HEAD
   pedantic:
     dependency: transitive
     description:
@@ -597,8 +588,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.1"
-=======
->>>>>>> c468921250052491e060731c8c4115fe94df3938
   petitparser:
     dependency: transitive
     description:
@@ -619,11 +608,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "2.1.3"
-=======
-    version: "2.1.2"
->>>>>>> c468921250052491e060731c8c4115fe94df3938
   process:
     dependency: transitive
     description:
@@ -644,7 +629,6 @@ packages:
       name: riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "1.0.3+1"
   rxdart:
     dependency: transitive
@@ -653,16 +637,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.5"
-=======
-    version: "3.1.0"
-  riverpod:
-    dependency: transitive
-    description:
-      name: riverpod
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3+1"
->>>>>>> c468921250052491e060731c8c4115fe94df3938
   sky_engine:
     dependency: transitive
     description: flutter
