@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class ChessClockTimer extends StatelessWidget {
@@ -5,6 +7,7 @@ class ChessClockTimer extends StatelessWidget {
   final bool isTicking;
   final bool isTimeup;
   final VoidCallback onPressed;
+  final String colour;
 
   final Duration availableTime;
 
@@ -13,6 +16,7 @@ class ChessClockTimer extends StatelessWidget {
     this.isReversed = false,
     this.isTicking = false,
     this.isTimeup = false,
+    required this.colour,
     required this.onPressed,
     required this.availableTime,
   }) : super(key: key);
@@ -39,16 +43,31 @@ class ChessClockTimer extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         color: _getColor(),
-        child: Center(
-          child: RotatedBox(
-            quarterTurns: isReversed ? 2 : 0,
-            child: Text(
-              _getAvailableTimeText(),
-              style: TextStyle(
-                fontSize: 70,
-                color: Color.fromARGB(220, 255, 255, 255),
+        child: RotatedBox(
+          quarterTurns: isReversed ? 2 : 0,
+          child: Column(
+            children: [
+              SizedBox(height: 10.0),
+              Text(
+                colour,
+                style: TextStyle(
+                  color: Colors.amber,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
+              Expanded(
+                child: Center(
+                  child: Text(
+                    _getAvailableTimeText(),
+                    style: TextStyle(
+                      fontSize: 70,
+                      color: Color.fromARGB(220, 255, 255, 255),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

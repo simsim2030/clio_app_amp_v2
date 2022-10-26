@@ -54,6 +54,11 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   int _presscount_top = 0;
   int _presscount_bot = 0;
 
+  // Chessclock Play button logic default values
+  int _clockState = 0;
+  bool _gameStart = false;
+  int _B_W = 0;
+
   // Uniqu device ID for each Clio
   String deviceID = '12345';
 
@@ -118,6 +123,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
               padding: const EdgeInsets.all(15.0),
               child: ChessClockTimer(
                 onPressed: _onTopPressed,
+                colour: 'White',
                 isReversed: true,
                 isTicking: _topClock.isTicking(),
                 isTimeup: _topClock.isTimeUp(),
@@ -126,12 +132,18 @@ class _ChessClockBodyState extends State<ChessClockBody> {
               ),
             ),
           ),
-          chessClockSettingBtn(topClock: _topClock, bottomClock: _bottomClock),
+          chessClockSettingBtn(
+            topClock: _topClock,
+            bottomClock: _bottomClock,
+            gameStart: _gameStart,
+            B_W: _B_W,
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ChessClockTimer(
                 onPressed: _onBottomPressed,
+                colour: 'Black',
                 isTicking: _bottomClock.isTicking(),
                 isTimeup: _bottomClock.isTimeUp(),
                 availableTime:
@@ -148,6 +160,8 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   void _onTopPressed() {
     _topClock.pause();
     _bottomClock.start();
+    _gameStart = true;
+    _B_W = 1;
 
     if (_presscount_top <= 0) {
       apiservice.createChessMove(movenumber);
@@ -170,6 +184,8 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   void _onBottomPressed() {
     _topClock.start();
     _bottomClock.pause();
+    _gameStart == true;
+    _B_W = -1;
 
     if (_presscount_bot <= 0) {
       apiservice.createChessMove(movenumber);
