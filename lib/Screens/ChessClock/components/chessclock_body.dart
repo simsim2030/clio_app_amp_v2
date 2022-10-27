@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:clio_chess_amp_v2/Screens/ChessClock/components/button/chessclocksettingbtn.dart';
+import 'package:clio_chess_amp_v2/Screens/ChessClock/components/customTimeControl/timecontrol_setting_dialog.dart';
 import 'package:clio_chess_amp_v2/services/api_service.dart';
 
 import 'package:mqtt_client/mqtt_client.dart';
@@ -56,8 +57,12 @@ class _ChessClockBodyState extends State<ChessClockBody> {
 
   // Chessclock Play button logic default values
   int _clockState = 0;
-  bool _gameStart = false;
+  bool _gameRunning = false;
+  bool _initializing = true;
   int _B_W = 0;
+
+  // Take picture
+  bool isGameStarted = false;
 
   // Uniqu device ID for each Clio
   String deviceID = '12345';
@@ -97,6 +102,24 @@ class _ChessClockBodyState extends State<ChessClockBody> {
       backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
         actions: [
+          (isGameStarted == false)
+              ? IconButton(
+                  onPressed: () {
+                    // Trigger
+                    const pubTopic = 'esp32/sub';
+                    final builder = MqttClientPayloadBuilder();
+                    builder.addString('0');
+                    client.publishMessage(
+                        pubTopic, MqttQos.atLeastOnce, builder.payload!);
+                    isGameStarted = true;
+                  },
+                  icon: Icon(Icons.camera),
+                )
+              : IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.camera),
+                  color: Colors.greenAccent[400],
+                ),
           (_iotConnected == false)
               ? IconButton(
                   onPressed: () {
@@ -113,7 +136,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
                   },
                   icon: Icon(Icons.connect_without_contact_rounded),
                   color: Colors.greenAccent[400],
-                )
+                ),
         ],
       ),
       body: Column(
@@ -122,7 +145,15 @@ class _ChessClockBodyState extends State<ChessClockBody> {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: ChessClockTimer(
-                onPressed: _onTopPressed,
+                onPressed: () {
+                  _onTopPressed();
+                  setState(() {
+                    _gameRunning = true;
+                    _initializing = false;
+                    _B_W = -1;
+                  });
+                  print('gameRunning: ' + _gameRunning.toString());
+                },
                 colour: 'White',
                 isReversed: true,
                 isTicking: _topClock.isTicking(),
@@ -132,17 +163,102 @@ class _ChessClockBodyState extends State<ChessClockBody> {
               ),
             ),
           ),
-          chessClockSettingBtn(
-            topClock: _topClock,
-            bottomClock: _bottomClock,
-            gameStart: _gameStart,
-            B_W: _B_W,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Center(
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () async {
+                    _topClock.pause();
+                    _bottomClock.pause();
+                    await createAlertDialog(context).then((value) {
+                      // SnackBar mySnackbar =
+                      //     SnackBar(content: Text("Hello $value"));
+                      // Scaffold.of(context).showSnackBar(mySnackbar);
+                      _topClock.timeControlMillis = value!;
+                      _topClock.millisElapsed = 0;
+                      _bottomClock.timeControlMillis = value;
+                      _bottomClock.millisElapsed = 0;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.settings,
+                    color: Colors.grey[200],
+                    size: 42,
+                  ),
+                ),
+              ),
+              Center(
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    print('inti: ' + _initializing.toString());
+                    print('gameRunning: ' + _gameRunning.toString());
+                    print('BW: ' + this._B_W.toString());
+                    if (_initializing == true) {
+                      _bottomClock.pause();
+                      _topClock.start();
+                      _initializing = false;
+                      _gameRunning = true;
+                      _B_W = -1;
+                    } else {
+                      if (_gameRunning == true) {
+                        _bottomClock.pause();
+                        _topClock.pause();
+                        _gameRunning = false;
+                      } else if (_gameRunning == false && this._B_W == -1) {
+                        _bottomClock.pause();
+                        _topClock.start();
+                        _gameRunning = true;
+                      } else if (_gameRunning == false && _B_W == 1) {
+                        _bottomClock.start();
+                        _topClock.pause();
+                        _gameRunning = true;
+                      }
+                    }
+                  },
+                  icon: Image.asset('assets/icons/pause.png'),
+                ),
+              ),
+              Center(
+                // Reset icon
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    _topClock = ChessClock(
+                      getNowMillis: () => DateTime.now().millisecondsSinceEpoch,
+                      timeControlMillis: 5 * 60 * 1000,
+                      incrementsMillis: 0,
+                    );
+                    _bottomClock = ChessClock(
+                      getNowMillis: () => DateTime.now().millisecondsSinceEpoch,
+                      timeControlMillis: 5 * 60 * 1000,
+                      incrementsMillis: 0,
+                    );
+                    print('gameRunning: ' + _gameRunning.toString());
+                  },
+                  icon: Icon(
+                    Icons.restart_alt,
+                    color: Colors.grey[200],
+                    size: 42,
+                  ),
+                ),
+              ),
+            ],
           ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ChessClockTimer(
-                onPressed: _onBottomPressed,
+                onPressed: () {
+                  _onBottomPressed();
+                  setState(() {
+                    _gameRunning = true;
+                    _initializing = false;
+                    _B_W = -1;
+                  });
+                },
                 colour: 'Black',
                 isTicking: _bottomClock.isTicking(),
                 isTimeup: _bottomClock.isTimeUp(),
@@ -160,8 +276,11 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   void _onTopPressed() {
     _topClock.pause();
     _bottomClock.start();
-    _gameStart = true;
-    _B_W = 1;
+    setState(() {
+      _gameRunning = true;
+      _initializing = false;
+      _B_W = 1;
+    });
 
     if (_presscount_top <= 0) {
       apiservice.createChessMove(movenumber);
@@ -177,15 +296,18 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     // Trigger
     const pubTopic = 'esp32/sub';
     final builder = MqttClientPayloadBuilder();
-    builder.addString('0');
+    builder.addString('-1');
     client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
   }
 
   void _onBottomPressed() {
     _topClock.start();
     _bottomClock.pause();
-    _gameStart == true;
-    _B_W = -1;
+    setState(() {
+      _gameRunning = true;
+      _initializing = false;
+      _B_W = -1;
+    });
 
     if (_presscount_bot <= 0) {
       apiservice.createChessMove(movenumber);
@@ -283,5 +405,13 @@ class _ChessClockBodyState extends State<ChessClockBody> {
 
   void pong() {
     print('Ping respone client callback invoked');
+  }
+
+  void initalTrigger() {
+    // Trigger
+    const pubTopic = 'esp32/sub';
+    final builder = MqttClientPayloadBuilder();
+    builder.addString('0');
+    client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
   }
 }

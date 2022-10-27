@@ -1,6 +1,10 @@
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
+import 'package:clio_chess_amp_v2/services/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:mqtt_client/mqtt_client.dart';
+import 'package:mqtt_client/mqtt_server_client.dart';
 
+import '../chessclock_body.dart';
 import '../chessclockfunction.dart';
 import '../customTimeControl/timecontrol_setting_dialog.dart';
 
@@ -30,7 +34,14 @@ class _chessClockSettingBtnState extends State<chessClockSettingBtn> {
   bool gameStart = false;
   bool init = true;
   int clockState = 0;
-  bool playBtnState = false;
+  bool playBtnState = true;
+
+  // Initialize AWS api and IoT connection
+  APIService apiservice = APIService();
+  final MqttServerClient client = MqttServerClient(
+      'a3s43fchdeum50-ats.iot.ap-southeast-2.amazonaws.com', '');
+  String statusText = "Status Text";
+  bool isConnected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +79,7 @@ class _chessClockSettingBtnState extends State<chessClockSettingBtn> {
               print('widget._gameStart: ' + widget._gameStart.toString());
               print('gameStart: ' + gameStart.toString());
               print('widget._B_W: ' + widget._B_W.toString());
+              print("playBtnState: " + playBtnState.toString());
               print('---------------');
               if (widget._gameStart == true && gameStart == true) {
                 widget._bottomClock.pause();
@@ -97,17 +109,16 @@ class _chessClockSettingBtnState extends State<chessClockSettingBtn> {
                 widget._topClock.pause();
                 widget._bottomClock.pause();
                 gameStart = false;
+
                 print("2");
               } else if (widget._gameStart == true && gameStart == false) {
                 // When pause and starting in the middle (black moves)
                 if (playBtnState == true) {
                   widget._topClock.pause();
                   widget._bottomClock.pause();
-                  widget._gameStart = false;
-
                   playBtnState = !playBtnState;
                   print("5-1");
-                } else {
+                } else if (playBtnState == false) {
                   if (widget._B_W == -1) {
                     widget._topClock.start();
                     widget._bottomClock.pause();
