@@ -88,8 +88,8 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     _timer.cancel();
   }
 
+  // IoT Device inital connection value
   bool _iotConnected = false;
-
   void iotConnectionChange() {
     setState(() {
       _iotConnected = !_iotConnected;
@@ -100,6 +100,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
+      // App Bar
       appBar: AppBar(
         actions: [
           (isGameStarted == false)
@@ -141,6 +142,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
       ),
       body: Column(
         children: [
+          // Top Timer Pad
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(15.0),
@@ -163,9 +165,11 @@ class _ChessClockBodyState extends State<ChessClockBody> {
               ),
             ),
           ),
+          // Middle Settings
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              // Srtting Button
               Center(
                 child: IconButton(
                   padding: EdgeInsets.zero,
@@ -189,6 +193,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
                   ),
                 ),
               ),
+              //  Play/Pause Button
               Center(
                 child: IconButton(
                   padding: EdgeInsets.zero,
@@ -221,8 +226,8 @@ class _ChessClockBodyState extends State<ChessClockBody> {
                   icon: Image.asset('assets/icons/pause.png'),
                 ),
               ),
+              // Reset Button
               Center(
-                // Reset icon
                 child: IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {
@@ -247,6 +252,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
               ),
             ],
           ),
+          // Bottom Timer Pad
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -273,6 +279,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   }
 
   // Timer Press Logic
+  // Top Button Logic
   void _onTopPressed() {
     _topClock.pause();
     _bottomClock.start();
@@ -300,6 +307,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
   }
 
+  // Bottom button logic
   void _onBottomPressed() {
     _topClock.start();
     _bottomClock.pause();
@@ -327,7 +335,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
   }
 
-  // IOT Devic Connection
+  // IOT Device Connection
   _connect() async {
     // if (idTextController.text.trim().isNotEmpty) {
     ProgressDialog progressDialog = ProgressDialog(context,
@@ -348,10 +356,12 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     // }
   }
 
+  // IoT Device Disconnect
   _disconnect() {
     client.disconnect();
   }
 
+  // IoT client setting
   Future<bool> mqttConnect(String uniqueID) async {
     setStatus("Connecting MQTT Broker");
     ByteData rootCA = await rootBundle.load('assets/certs/RootCA.pem');
