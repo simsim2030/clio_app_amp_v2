@@ -134,8 +134,12 @@ class ClioMove extends Model {
   Map<String, dynamic> toJson() => {
     'id': id, 'board_fen': _board_fen, 'movenumber': _movenumber, 'move': _move, 'user': _user, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
+  
+  Map<String, Object?> toMap() => {
+    'id': id, 'board_fen': _board_fen, 'movenumber': _movenumber, 'move': _move, 'user': _user, 'createdAt': _createdAt, 'updatedAt': _updatedAt
+  };
 
-  static final QueryField ID = QueryField(fieldName: "clioMove.id");
+  static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField BOARD_FEN = QueryField(fieldName: "board_fen");
   static final QueryField MOVENUMBER = QueryField(fieldName: "movenumber");
   static final QueryField MOVE = QueryField(fieldName: "move");
@@ -146,21 +150,8 @@ class ClioMove extends Model {
     
     modelSchemaDefinition.authRules = [
       AuthRule(
-        authStrategy: AuthStrategy.OWNER,
-        ownerField: "owner",
-        identityClaim: "cognito:username",
-        provider: AuthRuleProvider.USERPOOLS,
-        operations: [
-          ModelOperation.CREATE,
-          ModelOperation.UPDATE,
-          ModelOperation.DELETE,
-          ModelOperation.READ
-        ]),
-      AuthRule(
-        authStrategy: AuthStrategy.GROUPS,
-        groupClaim: "cognito:groups",
-        groups: [ "Users" ],
-        provider: AuthRuleProvider.USERPOOLS,
+        authStrategy: AuthStrategy.PUBLIC,
+        provider: AuthRuleProvider.APIKEY,
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,

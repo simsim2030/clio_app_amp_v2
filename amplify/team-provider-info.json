@@ -13,8 +13,10 @@
     },
     "categories": {
       "auth": {
-        "clioappampv2lp3ce75363": {},
         "clioappampv2lp46bf64a8": {}
+      },
+      "storage": {
+        "PNGStorage": {}
       }
     }
   }

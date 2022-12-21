@@ -2,7 +2,7 @@ import 'package:clio_chess_amp_v2/Screens/Blog/blog_page.dart';
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
 import 'package:clio_chess_amp_v2/Screens/LiveChessAnalysis/livechessanalysis_page.dart';
 import 'package:clio_chess_amp_v2/Screens/Home/components/home_flat_button.dart';
-import 'package:clio_chess_amp_v2/Screens/GameAnalysis/gameanalysis_page.dart';
+import 'package:clio_chess_amp_v2/Screens/GameAnalysis/gameanalysisselection_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
 import 'package:clio_chess_amp_v2/Screens/Settings/setting_page.dart';
 import 'package:clio_chess_amp_v2/components/Drawer/main_drawer.dart';
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
             ),
             HomePageFlatButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(GameAnalysis.routeName);
+                Navigator.of(context).pushNamed(GameAnalysisSelection.routeName);
               },
               image: 'assets/images/2DChess.png',
               icon: Icons.history,

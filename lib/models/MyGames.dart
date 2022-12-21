@@ -190,8 +190,12 @@ class MyGames extends Model {
   Map<String, dynamic> toJson() => {
     'id': id, 'Title': _Title, 'white': _white, 'black': _black, 'date': _date, 'downloaded': _downloaded, 'user': _user, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
+  
+  Map<String, Object?> toMap() => {
+    'id': id, 'Title': _Title, 'white': _white, 'black': _black, 'date': _date, 'downloaded': _downloaded, 'user': _user, 'createdAt': _createdAt, 'updatedAt': _updatedAt
+  };
 
-  static final QueryField ID = QueryField(fieldName: "myGames.id");
+  static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField TITLE = QueryField(fieldName: "Title");
   static final QueryField WHITE = QueryField(fieldName: "white");
   static final QueryField BLACK = QueryField(fieldName: "black");
@@ -204,21 +208,8 @@ class MyGames extends Model {
     
     modelSchemaDefinition.authRules = [
       AuthRule(
-        authStrategy: AuthStrategy.OWNER,
-        ownerField: "owner",
-        identityClaim: "cognito:username",
-        provider: AuthRuleProvider.USERPOOLS,
-        operations: [
-          ModelOperation.CREATE,
-          ModelOperation.UPDATE,
-          ModelOperation.DELETE,
-          ModelOperation.READ
-        ]),
-      AuthRule(
-        authStrategy: AuthStrategy.GROUPS,
-        groupClaim: "cognito:groups",
-        groups: [ "Users" ],
-        provider: AuthRuleProvider.USERPOOLS,
+        authStrategy: AuthStrategy.PUBLIC,
+        provider: AuthRuleProvider.APIKEY,
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,

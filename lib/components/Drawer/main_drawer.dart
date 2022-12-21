@@ -1,7 +1,7 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
-import 'package:clio_chess_amp_v2/Screens/GameAnalysis/gameanalysis_page.dart';
+import 'package:clio_chess_amp_v2/Screens/GameAnalysis/gameanalysisselection_page.dart';
 import 'package:clio_chess_amp_v2/Screens/LiveChessAnalysis/livechessanalysis_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
 import 'package:clio_chess_amp_v2/components/Drawer/Components/BuildBottomListTile.dart';
@@ -44,7 +44,7 @@ class MainDrawer extends StatelessWidget {
                       'Live Chess',
                       Icons.apps_rounded,
                       () {
-                        Navigator.of(context).pushNamed(GameAnalysis.routeName);
+                        Navigator.of(context).pushNamed(GameAnalysisSelection.routeName);
                       },
                     ),
                     buildMainListTile(

@@ -123,8 +123,12 @@ class Todo extends Model {
   Map<String, dynamic> toJson() => {
     'id': id, 'name': _name, 'description': _description, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
+  
+  Map<String, Object?> toMap() => {
+    'id': id, 'name': _name, 'description': _description, 'createdAt': _createdAt, 'updatedAt': _updatedAt
+  };
 
-  static final QueryField ID = QueryField(fieldName: "todo.id");
+  static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField NAME = QueryField(fieldName: "name");
   static final QueryField DESCRIPTION = QueryField(fieldName: "description");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {

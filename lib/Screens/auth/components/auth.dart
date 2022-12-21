@@ -1,7 +1,8 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:clio_chess_amp_v2/Screens/Blog/blog_page.dart';
 import 'package:clio_chess_amp_v2/Screens/ChessClock/chessclock.dart';
-import 'package:clio_chess_amp_v2/Screens/GameAnalysis/gameanalysis_page.dart';
+import 'package:clio_chess_amp_v2/Screens/GameAnalysis/AnalysisPage/gameanalysis_page.dart';
+import 'package:clio_chess_amp_v2/Screens/GameAnalysis/gameanalysisselection_page.dart';
 import 'package:clio_chess_amp_v2/Screens/LiveChessAnalysis/livechessanalysis_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_history_page.dart';
 import 'package:clio_chess_amp_v2/Screens/OfflineChess/offline_chess_page.dart';
@@ -193,7 +194,8 @@ class Auth extends StatelessWidget {
           SignupPage.routeName: (ctx) => SignupPage(),
           OfflineModePage.routeName: (ctx) => OfflineModePage(),
           ChessClockPage.routeName: (ctx) => ChessClockPage(),
-          GameAnalysis.routeName: (_) => GameAnalysis(),
+          GameAnalysisSelection.routeName: (_) => GameAnalysisSelection(),
+          GameAnalysisPage.routeName: (_) => GameAnalysisPage(),
           BlogPage.routename: (ctx) => BlogPage(),
           OfflineChessPageHistory.routeName: (ctx) => OfflineChessPageHistory(),
           HomePage.routeName: (ctx) {

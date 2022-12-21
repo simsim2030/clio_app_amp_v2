@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:clio_chess_amp_v2/Screens/GameAnalysis/AnalysisPage/gameanalysis_page.dart';
 import 'package:clio_chess_amp_v2/Screens/GameAnalysis/storage_feature/controller/storage_files_controller.dart';
 import 'package:clio_chess_amp_v2/Screens/GameAnalysis/storage_feature/ui/delete_storage_file_dialog.dart';
 import 'package:clio_chess_amp_v2/Screens/GameAnalysis/storage_feature/ui/storage_file_tile.dart';
@@ -10,10 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-class GameAnalysis extends ConsumerWidget {
-  static const routeName = '/gameanalysis_page';
+class GameAnalysisSelection extends ConsumerWidget {
+  static const routeName = '/gameanalysisselection_page';
 
-  GameAnalysis({Key? key}) : super(key: key);
+  GameAnalysisSelection({Key? key}) : super(key: key);
 
   Future<bool> uploadImage({
     required BuildContext context,
@@ -112,6 +113,13 @@ class GameAnalysis extends ConsumerWidget {
                           ),
                         ),
                       ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(GameAnalysisPage.routeName);
+                      },
+                      child: Text('PGN'),
                     ),
                   ],
                 ),

@@ -5,8 +5,10 @@
     "serviceName": "AppSync",
     "gqlSchemaPath": "C:\\Users\\asus\\Desktop\\ChessClock\\GitHub\\Amplify\\Mobile\\clio_app_amp_v2\\amplify\\backend\\api\\clioappampv2lp\\schema.graphql",
     "defaultAuthType": {
-      "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authclioappampv2lp46bf64a8"
+      "mode": "API_KEY",
+      "expirationTime": 30,
+      "apiKeyExpirationDate": "2022-11-29T10:20:32.598Z",
+      "keyDescription": "plz work"
     },
     "additionalAuthTypes": [
       {
