@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -42,7 +42,7 @@ dependencies:
   flutter_chess_board: ^1.0.1
   flutter_stateless_chessboard: ^1.1.2
 
-  amplify_core: '<1.0.0'
+  amplify_core: "<1.0.0"
   amplify_flutter: ^0.6.0
   amplify_datastore: ^0.6.0
   amplify_api: ^0.6.0
@@ -57,13 +57,13 @@ dependencies:
   flutter_riverpod: ^1.0.3
   image_picker: ^0.8.5+3
   cached_network_image: ^3.2.0
-   
+
+  csv: ^5.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   intl: ^0.17.0
-
-
 
 flutter_native_splash:
   color: "#21626d" # white colour
@@ -97,6 +97,7 @@ flutter:
     - assets/certs/DeviceCertificate.crt
     - assets/certs/Private.key
     - assets/certs/RootCA.pem
+    - assets/position/position.csv
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

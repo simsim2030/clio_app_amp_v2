@@ -64,7 +64,7 @@ class GameAnalysisSelection extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Live Chess'),
+        title: Text('Post Game Analysis'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
