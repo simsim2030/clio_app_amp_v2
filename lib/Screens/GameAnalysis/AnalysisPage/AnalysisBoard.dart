@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:csv/csv.dart';
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 
 class AnalysisBoard {
   void readCSV() {
@@ -10,19 +11,17 @@ class AnalysisBoard {
   }
 
   Future<String> loadCSV() async {
-    // List<String> added = [];
     final String CurrentFen;
-    // print('Enter a file name to read from: ');
-    // var fileName = 'assets/position/position.csv';
-    final _rawData =
-        await rootBundle.loadString("assets/position/position.csv");
+
+    final documentsDir = await getApplicationDocumentsDirectory();
+    final filepath = documentsDir.path + '/Game1.csv';
+    final file = File(filepath);
+    final _rawData = await file.readAsString();
+
     List<List<dynamic>> csvTable = CsvToListConverter().convert(_rawData);
     csvTable[0][1] = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1';
     print(csvTable[0][1]);
     print(csvTable[26][1]);
-    // print(_rawData);
-    // lines.removeAt(0);
-    // LineSplitter.split(_rawData).forEach((line) => print('$line'));
 
     CurrentFen = csvTable[csvTable.length - 1][1];
 
@@ -30,31 +29,28 @@ class AnalysisBoard {
   }
 
   Future<int> getMoveNumber() async {
-    // List<String> added = [];
     final String CurrentFen;
-    // print('Enter a file name to read from: ');
-    // var fileName = 'assets/position/position.csv';
-    final _rawData =
-        await rootBundle.loadString("assets/position/position.csv");
+    final documentsDir = await getApplicationDocumentsDirectory();
+    final filepath = documentsDir.path + '/Game1.csv';
+    final file = File(filepath);
+    final _rawData = await file.readAsString();
+
     List<List<dynamic>> csvTable = CsvToListConverter().convert(_rawData);
 
     return csvTable.length - 1;
   }
 
   Future<String> switchPoistion(moveNumber) async {
-    // List<String> added = [];
     final String CurrentFen;
-    // print('Enter a file name to read from: ');
-    // var fileName = 'assets/position/position.csv';
-    final _rawData =
-        await rootBundle.loadString("assets/position/position.csv");
+    final documentsDir = await getApplicationDocumentsDirectory();
+    final filepath = documentsDir.path + '/Game1.csv';
+    final file = File(filepath);
+    final _rawData = await file.readAsString();
+
     List<List<dynamic>> csvTable = CsvToListConverter().convert(_rawData);
     csvTable[0][1] = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1';
     print(csvTable.length);
     print(csvTable[moveNumber][1]);
-    // print(_rawData);
-    // lines.removeAt(0);
-    // LineSplitter.split(_rawData).forEach((line) => print('$line'));
 
     CurrentFen = csvTable[moveNumber][1];
 
