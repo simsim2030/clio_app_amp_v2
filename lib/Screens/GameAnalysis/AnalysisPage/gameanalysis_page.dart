@@ -97,14 +97,6 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                         alignment: MainAxisAlignment.start,
                       );
                     }),
-                // ValueListenableBuilder<double>(
-                //     valueListenable: AnalysisBoard.cpValuePercentage,
-                //     builder: (ctx2, subCount2, child2) {
-                //       return LinearProgressIndicator(
-                //         value: AnalysisBoard.cpValuePercentage.value,
-                //         minHeight: 20,
-                //       );
-                //     }),
                 ChessBoard(
                   controller: controller,
                   boardColor: BoardColor.orange,
@@ -144,19 +136,19 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
           //   },
           //   child: Text('test 222'),
           // ),
-          ElevatedButton(
-            onPressed: () async {
-              String test = await analysisBoard.loadCSV();
-              controller.loadFen(test);
-              maxMoveNumber = await analysisBoard.getMoveNumber();
-              moveNumber = await analysisBoard.getMoveNumber();
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     String test = await analysisBoard.loadCSV();
+          //     controller.loadFen(test);
+          //     maxMoveNumber = await analysisBoard.getMoveNumber();
+          //     moveNumber = await analysisBoard.getMoveNumber();
 
-              currentCP = await analysisBoard.getCP(moveNumber);
-              analysisBoard.getCPValue();
-              analysisBoard.getCPValuePercentage();
-            },
-            child: Text('Read PGN'),
-          ),
+          //     currentCP = await analysisBoard.getCP(moveNumber);
+          //     analysisBoard.getCPValue();
+          //     analysisBoard.getCPValuePercentage();
+          //   },
+          //   child: Text('Read PGN'),
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
