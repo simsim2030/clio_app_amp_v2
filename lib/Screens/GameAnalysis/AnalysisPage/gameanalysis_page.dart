@@ -42,39 +42,43 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                LinearPercentIndicator(
-                  width: screenwidth,
-                  lineHeight: 20.0,
-                  percent: 0.2,
-                  center: Align(
-                    alignment: Alignment.topRight,
-                    child: ValueListenableBuilder<String>(
-                      valueListenable: AnalysisBoard.cpValue,
-                      builder: (ctx, subCount, child) {
-                        return Text(
-                          "${AnalysisBoard.cpValue.value}",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 0),
-                  linearStrokeCap: LinearStrokeCap.butt,
-                  backgroundColor: Colors.black,
-                  progressColor: Colors.white,
-                  alignment: MainAxisAlignment.start,
-                ),
                 ValueListenableBuilder<double>(
                     valueListenable: AnalysisBoard.cpValuePercentage,
                     builder: (ctx2, subCount2, child2) {
-                      return LinearProgressIndicator(
-                        value: AnalysisBoard.cpValuePercentage.value,
-                        minHeight: 20,
+                      return LinearPercentIndicator(
+                        width: screenwidth,
+                        lineHeight: 20.0,
+                        percent: AnalysisBoard.cpValuePercentage.value,
+                        center: Align(
+                          alignment: Alignment.topRight,
+                          child: ValueListenableBuilder<String>(
+                            valueListenable: AnalysisBoard.cpValue,
+                            builder: (ctx, subCount, child) {
+                              return Text(
+                                "${AnalysisBoard.cpValue.value}",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 0),
+                        linearStrokeCap: LinearStrokeCap.butt,
+                        backgroundColor: Colors.black,
+                        progressColor: Colors.white,
+                        alignment: MainAxisAlignment.start,
                       );
                     }),
+                // ValueListenableBuilder<double>(
+                //     valueListenable: AnalysisBoard.cpValuePercentage,
+                //     builder: (ctx2, subCount2, child2) {
+                //       return LinearProgressIndicator(
+                //         value: AnalysisBoard.cpValuePercentage.value,
+                //         minHeight: 20,
+                //       );
+                //     }),
                 ChessBoard(
                   controller: controller,
                   boardColor: BoardColor.orange,
@@ -108,15 +112,12 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
               },
             ),
           ),
-
           ElevatedButton(
             onPressed: () {
               updateCP();
             },
             child: Text('test 222'),
           ),
-
-          // Text('Number : $add'),
           ElevatedButton(
             onPressed: () async {
               String test = await analysisBoard.loadCSV();
@@ -125,11 +126,8 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
               moveNumber = await analysisBoard.getMoveNumber();
 
               currentCP = await analysisBoard.getCP(moveNumber);
-              // currentCpPercentage = analysisBoard.getCPValuePercentage();
               analysisBoard.getCPValue();
               analysisBoard.getCPValuePercentage();
-              // updateCP();
-              // print(currentCpPercentage);
             },
             child: Text('Read PGN'),
           ),
@@ -146,12 +144,8 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                           await analysisBoard.switchPoistion(moveNumber);
                       controller.loadFen(currentFen);
                       currentCP = await analysisBoard.getCP(moveNumber);
-                      // currentCpPercentage =
-                      // analysisBoard.getCPValuePercentage();
                       analysisBoard.getCPValue();
                       analysisBoard.getCPValuePercentage();
-                      // print(currentCpPercentage);
-                      // updateCP();
                     }
                   },
                   icon: Icon(Icons.arrow_back_ios)),
@@ -165,12 +159,8 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                           await analysisBoard.switchPoistion(moveNumber);
                       controller.loadFen(currentFen);
                       currentCP = await analysisBoard.getCP(moveNumber);
-                      // currentCpPercentage =
-                      // analysisBoard.getCPValuePercentage();
                       analysisBoard.getCPValue();
                       analysisBoard.getCPValuePercentage();
-                      // print(currentCpPercentage);
-                      // updateCP();
                     }
                   },
                   icon: Icon(Icons.arrow_forward_ios)),
