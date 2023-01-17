@@ -208,7 +208,7 @@ class GameAnalysisSelection extends ConsumerWidget {
                         downloadFile();
                         // Download to mobile memory
                       },
-                      child: Text('PGN'),
+                      child: Text('Download PGN'),
                     ),
                     ElevatedButton(
                       onPressed: () {

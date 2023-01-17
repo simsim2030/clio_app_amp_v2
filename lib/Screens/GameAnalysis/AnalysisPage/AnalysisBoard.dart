@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:csv/csv.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
 class AnalysisBoard {
+  double CurrentCP = 0;
   void readCSV() {
     List<List<dynamic>> _data = [];
   }
@@ -56,4 +58,28 @@ class AnalysisBoard {
 
     return CurrentFen;
   }
+
+  Future<double> getCP(moveNumber) async {
+    this.CurrentCP;
+    final documentsDir = await getApplicationDocumentsDirectory();
+    final filepath = documentsDir.path + '/Game1.csv';
+    final file = File(filepath);
+    final _rawData = await file.readAsString();
+
+    List<List<dynamic>> csvTable = CsvToListConverter().convert(_rawData);
+    csvTable[0][2] = 0;
+
+    this.CurrentCP = csvTable[moveNumber][2];
+
+    return this.CurrentCP;
+  }
+
+  static ValueNotifier<String> cpValue = ValueNotifier('0.0');
+
+  void getCPValue() {
+    cpValue.value = this.CurrentCP.toString();
+  }
+
+
+  
 }

@@ -59,6 +59,8 @@ dependencies:
   cached_network_image: ^3.2.0
 
   csv: ^5.0.1
+  liquid_progress_indicator: ^0.4.0
+  percent_indicator: ^3.4.0
 
 dev_dependencies:
   flutter_test:
