@@ -17,18 +17,31 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
   ChessBoardController controller = ChessBoardController();
   AnalysisBoard analysisBoard = AnalysisBoard();
   double a = 0.0;
-  void updateCP() {
-    setState(() {
-      a += 0.05;
-    });
+  int moveNumber = 0;
+  int maxMoveNumber = 0;
+
+  void initState() {
+    super.initState();
+    initializeBoard();
+  }
+
+  void initializeBoard() async {
+    String test = await analysisBoard.loadCSV();
+    controller.loadFen(test);
+    maxMoveNumber = await analysisBoard.getMoveNumber();
+    moveNumber = await analysisBoard.getMoveNumber();
+
+    currentCP = await analysisBoard.getCP(moveNumber);
+    analysisBoard.getCPValue();
+    analysisBoard.getCPValuePercentage();
+  }
+
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    int moveNumber = 0;
-    int maxMoveNumber = 0;
-    double test = 0.5;
-
     final screenwidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -44,21 +57,34 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
               children: <Widget>[
                 ValueListenableBuilder<double>(
                     valueListenable: AnalysisBoard.cpValuePercentage,
-                    builder: (ctx2, subCount2, child2) {
+                    builder: (context, subCount2, child2) {
                       return LinearPercentIndicator(
                         width: screenwidth,
                         lineHeight: 20.0,
                         percent: AnalysisBoard.cpValuePercentage.value,
                         center: Align(
-                          alignment: Alignment.topRight,
+                          alignment: AnalysisBoard.cpValuePercentage.value < 0.5
+                              ? Alignment.topRight
+                              : Alignment.topLeft,
                           child: ValueListenableBuilder<String>(
                             valueListenable: AnalysisBoard.cpValue,
-                            builder: (ctx, subCount, child) {
-                              return Text(
-                                "${AnalysisBoard.cpValue.value}",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
+                            builder: (context, subCount, child) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4),
+                                child: Text(
+                                  AnalysisBoard.cpValuePercentage.value == 0.5
+                                      ? ""
+                                      : "${AnalysisBoard.cpValue.value}",
+                                  style: TextStyle(
+                                    color:
+                                        AnalysisBoard.cpValuePercentage.value <
+                                                0.5
+                                            ? Colors.white
+                                            : Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               );
                             },
@@ -66,7 +92,7 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                         ),
                         padding: EdgeInsets.symmetric(horizontal: 0),
                         linearStrokeCap: LinearStrokeCap.butt,
-                        backgroundColor: Colors.black,
+                        backgroundColor: Colors.black87,
                         progressColor: Colors.white,
                         alignment: MainAxisAlignment.start,
                       );
@@ -87,17 +113,17 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
               ],
             ),
           ),
-          ValueListenableBuilder<String>(
-            valueListenable: AnalysisBoard.cpValue,
-            builder: (ctx, subCount, child) {
-              return Text(
-                "${AnalysisBoard.cpValue.value}",
-                style: TextStyle(
-                  fontSize: 30,
-                ),
-              );
-            },
-          ),
+          // ValueListenableBuilder<String>(
+          //   valueListenable: AnalysisBoard.cpValue,
+          //   builder: (ctx, subCount, child) {
+          //     return Text(
+          //       "${AnalysisBoard.cpValue.value}",
+          //       style: TextStyle(
+          //         fontSize: 30,
+          //       ),
+          //     );
+          //   },
+          // ),
           Expanded(
             child: ValueListenableBuilder<Chess>(
               valueListenable: controller,
