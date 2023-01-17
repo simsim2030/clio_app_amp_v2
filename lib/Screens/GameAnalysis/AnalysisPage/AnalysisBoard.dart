@@ -80,6 +80,9 @@ class AnalysisBoard {
     cpValue.value = this.CurrentCP.toString();
   }
 
+  static ValueNotifier<double> cpValuePercentage = ValueNotifier(0.1);
 
-  
+  void getCPValuePercentage() {
+    cpValuePercentage.value = 0.5 + this.CurrentCP / 10;
+  }
 }

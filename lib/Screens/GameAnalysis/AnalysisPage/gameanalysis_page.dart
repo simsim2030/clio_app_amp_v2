@@ -14,14 +14,21 @@ class GameAnalysisPage extends StatefulWidget {
 
 class _GameAnalysisPageState extends State<GameAnalysisPage> {
   var currentCP = 0.0;
-  TextEditingController _cpController = TextEditingController();
   ChessBoardController controller = ChessBoardController();
   AnalysisBoard analysisBoard = AnalysisBoard();
+  double a = 0.0;
+  void updateCP() {
+    setState(() {
+      a += 0.05;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     int moveNumber = 0;
     int maxMoveNumber = 0;
+    double test = 0.5;
+
     final screenwidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -37,8 +44,6 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
               children: <Widget>[
                 LinearPercentIndicator(
                   width: screenwidth,
-                  animation: true,
-                  animationDuration: 1000,
                   lineHeight: 20.0,
                   percent: 0.2,
                   center: Align(
@@ -62,6 +67,14 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                   progressColor: Colors.white,
                   alignment: MainAxisAlignment.start,
                 ),
+                ValueListenableBuilder<double>(
+                    valueListenable: AnalysisBoard.cpValuePercentage,
+                    builder: (ctx2, subCount2, child2) {
+                      return LinearProgressIndicator(
+                        value: AnalysisBoard.cpValuePercentage.value,
+                        minHeight: 20,
+                      );
+                    }),
                 ChessBoard(
                   controller: controller,
                   boardColor: BoardColor.orange,
@@ -98,7 +111,7 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
 
           ElevatedButton(
             onPressed: () {
-              analysisBoard.getCPValue();
+              updateCP();
             },
             child: Text('test 222'),
           ),
@@ -112,7 +125,11 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
               moveNumber = await analysisBoard.getMoveNumber();
 
               currentCP = await analysisBoard.getCP(moveNumber);
+              // currentCpPercentage = analysisBoard.getCPValuePercentage();
               analysisBoard.getCPValue();
+              analysisBoard.getCPValuePercentage();
+              // updateCP();
+              // print(currentCpPercentage);
             },
             child: Text('Read PGN'),
           ),
@@ -129,7 +146,12 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                           await analysisBoard.switchPoistion(moveNumber);
                       controller.loadFen(currentFen);
                       currentCP = await analysisBoard.getCP(moveNumber);
+                      // currentCpPercentage =
+                      // analysisBoard.getCPValuePercentage();
                       analysisBoard.getCPValue();
+                      analysisBoard.getCPValuePercentage();
+                      // print(currentCpPercentage);
+                      // updateCP();
                     }
                   },
                   icon: Icon(Icons.arrow_back_ios)),
@@ -143,7 +165,12 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                           await analysisBoard.switchPoistion(moveNumber);
                       controller.loadFen(currentFen);
                       currentCP = await analysisBoard.getCP(moveNumber);
+                      // currentCpPercentage =
+                      // analysisBoard.getCPValuePercentage();
                       analysisBoard.getCPValue();
+                      analysisBoard.getCPValuePercentage();
+                      // print(currentCpPercentage);
+                      // updateCP();
                     }
                   },
                   icon: Icon(Icons.arrow_forward_ios)),
