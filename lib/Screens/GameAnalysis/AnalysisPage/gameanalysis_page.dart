@@ -112,12 +112,12 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
               },
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              updateCP();
-            },
-            child: Text('test 222'),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     updateCP();
+          //   },
+          //   child: Text('test 222'),
+          // ),
           ElevatedButton(
             onPressed: () async {
               String test = await analysisBoard.loadCSV();
