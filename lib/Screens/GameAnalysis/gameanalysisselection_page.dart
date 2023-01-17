@@ -53,7 +53,7 @@ class GameAnalysisSelection extends ConsumerWidget {
           local: exampleFile,
           key: 'ExampleKey',
           onProgress: (progress) {
-            safePrint('Fraction completed: ${progress.getFractionCompleted()}');
+            // safePrint('Fraction completed: ${progress.getFractionCompleted()}');
           });
       safePrint('Successfully uploaded file: ${result.key}');
     } on StorageException catch (e) {
@@ -78,25 +78,25 @@ class GameAnalysisSelection extends ConsumerWidget {
     }
   }
 
-  Future<void> downloadFile() async {
+  Future<void> downloadFile(String itemKey) async {
     final documentsDir = await getApplicationDocumentsDirectory();
     final filepath = documentsDir.path + '/Game1.csv';
-    print('hi');
-    print(filepath);
+    // print('hi');
+    // print(filepath);
     final file = File(filepath);
 
     try {
       final result = await Amplify.Storage.downloadFile(
-        key: 'Game1.csv',
+        key: itemKey,
         local: file,
         onProgress: (progress) {
-          safePrint('Fraction completed: ${progress.getFractionCompleted()}');
+          // safePrint('Fraction completed: ${progress.getFractionCompleted()}');
         },
       );
       final contents = result.file.readAsStringSync();
       // Or you can reference the file that is created above
       // final contents = file.readAsStringSync();
-      safePrint('Downloaded contents: $contents');
+      // safePrint('Downloaded contents: $contents');
     } on StorageException catch (e) {
       safePrint('Error downloading file: $e');
     }
@@ -106,8 +106,8 @@ class GameAnalysisSelection extends ConsumerWidget {
     try {
       final documentsDir = await getApplicationDocumentsDirectory();
       final filepath = documentsDir.path + '/example.txt';
-      print('hi2');
-      print(filepath);
+      // print('hi2');
+      // print(filepath);
       final file = File(filepath);
 
       // Read the file
@@ -141,7 +141,6 @@ class GameAnalysisSelection extends ConsumerWidget {
           ).then((value) {
             if (value) {
               ref.refresh(storageFilesListFutureProvider);
-
               Navigator.of(context, rootNavigator: true).pop();
             }
           });
@@ -177,7 +176,8 @@ class GameAnalysisSelection extends ConsumerWidget {
                           onTap: () {
                             Navigator.of(context)
                                 .pushNamed(GameAnalysisPage.routeName);
-                            downloadFile();
+                            downloadFile(items[index].key);
+                            print('item name: ${items[index].key}');
                           },
                           child: StorageFileTile(
                             storageFile: items[index],
@@ -192,24 +192,24 @@ class GameAnalysisSelection extends ConsumerWidget {
                       },
                       child: Text('Create and upload test file'),
                     ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        int a = await readCounter();
-                        print(a);
-                        // Send command to AWS to do python send csv.
-                      },
-                      child: Text('Read file'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(GameAnalysisPage.routeName);
-                        // Send command to AWS to do python send csv.
-                        downloadFile();
-                        // Download to mobile memory
-                      },
-                      child: Text('Download PGN'),
-                    ),
+                    // ElevatedButton(
+                    //   onPressed: () async {
+                    //     int a = await readCounter();
+                    //     // print(a);
+                    //     // Send command to AWS to do python send csv.
+                    //   },
+                    //   child: Text('Read file'),
+                    // ),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     Navigator.of(context)
+                    //         .pushNamed(GameAnalysisPage.routeName);
+                    //     // Send command to AWS to do python send csv.
+                    //     downloadFile(items[index].key);
+                    //     // Download to mobile memory
+                    //   },
+                    //   child: Text('Download PGN'),
+                    // ),
                     ElevatedButton(
                       onPressed: () {
                         ref.refresh(storageFilesListFutureProvider);
