@@ -174,8 +174,14 @@ class GameAnalysisSelection extends ConsumerWidget {
                             deletestorageFile(context, ref, items[index]);
                           }),
                           onTap: () {
-                            Navigator.of(context)
-                                .pushNamed(GameAnalysisPage.routeName);
+                            String gameKey = items[index].key;
+                            // String gameKey = 'a';
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      GameAnalysisPage(gameKey: gameKey)),
+                            );
                             downloadFile(items[index].key);
                             print('item name: ${items[index].key}');
                           },
@@ -185,13 +191,13 @@ class GameAnalysisSelection extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        createAndUploadFile();
-                        // Send command to AWS to do python send csv.
-                      },
-                      child: Text('Create and upload test file'),
-                    ),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     createAndUploadFile();
+                    //     // Send command to AWS to do python send csv.
+                    //   },
+                    //   child: Text('Create and upload test file'),
+                    // ),
                     // ElevatedButton(
                     //   onPressed: () async {
                     //     int a = await readCounter();
@@ -210,12 +216,12 @@ class GameAnalysisSelection extends ConsumerWidget {
                     //   },
                     //   child: Text('Download PGN'),
                     // ),
-                    ElevatedButton(
-                      onPressed: () {
-                        ref.refresh(storageFilesListFutureProvider);
-                      },
-                      child: Text('refresh'),
-                    )
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     ref.refresh(storageFilesListFutureProvider);
+                    //   },
+                    //   child: Text('refresh'),
+                    // )
                   ],
                 ),
           error: (e, st) => const Center(

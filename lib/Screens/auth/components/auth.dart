@@ -195,7 +195,7 @@ class Auth extends StatelessWidget {
           OfflineModePage.routeName: (ctx) => OfflineModePage(),
           ChessClockPage.routeName: (ctx) => ChessClockPage(),
           GameAnalysisSelection.routeName: (_) => GameAnalysisSelection(),
-          GameAnalysisPage.routeName: (_) => GameAnalysisPage(),
+          // GameAnalysisPage.routeName: (_) => GameAnalysisPage(),
           BlogPage.routename: (ctx) => BlogPage(),
           OfflineChessPageHistory.routeName: (ctx) => OfflineChessPageHistory(),
           HomePage.routeName: (ctx) {

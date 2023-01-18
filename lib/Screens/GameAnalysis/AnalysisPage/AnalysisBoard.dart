@@ -12,11 +12,11 @@ class AnalysisBoard {
     List<List<dynamic>> _data = [];
   }
 
-  Future<String> loadCSV() async {
+  Future<String> loadCSV(String gameKey) async {
     final String CurrentFen;
 
     final documentsDir = await getApplicationDocumentsDirectory();
-    final filepath = documentsDir.path + '/Game1.csv';
+    final filepath = documentsDir.path + '/$gameKey';
     final file = File(filepath);
     final _rawData = await file.readAsString();
 

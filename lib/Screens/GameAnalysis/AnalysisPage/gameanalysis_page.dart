@@ -6,13 +6,18 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class GameAnalysisPage extends StatefulWidget {
   static const routeName = '/gameanalysis_page';
-  const GameAnalysisPage({Key? key}) : super(key: key);
+  String gameKey;
+
+  GameAnalysisPage({Key? key, required this.gameKey}) : super(key: key);
 
   @override
-  State<GameAnalysisPage> createState() => _GameAnalysisPageState();
+  State<GameAnalysisPage> createState() => _GameAnalysisPageState(gameKey);
 }
 
 class _GameAnalysisPageState extends State<GameAnalysisPage> {
+  String gameKey;
+  _GameAnalysisPageState(this.gameKey);
+
   var currentCP = 0.0;
   ChessBoardController controller = ChessBoardController();
   AnalysisBoard analysisBoard = AnalysisBoard();
@@ -26,7 +31,7 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
   }
 
   void initializeBoard() async {
-    String test = await analysisBoard.loadCSV();
+    String test = await analysisBoard.loadCSV(gameKey);
     controller.loadFen(test);
     maxMoveNumber = await analysisBoard.getMoveNumber();
     moveNumber = await analysisBoard.getMoveNumber();
@@ -138,7 +143,8 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
           // ),
           // ElevatedButton(
           //   onPressed: () async {
-          //     String test = await analysisBoard.loadCSV();
+          //     print(gameKey);
+          //     String test = await analysisBoard.loadCSV(gameKey);
           //     controller.loadFen(test);
           //     maxMoveNumber = await analysisBoard.getMoveNumber();
           //     moveNumber = await analysisBoard.getMoveNumber();
