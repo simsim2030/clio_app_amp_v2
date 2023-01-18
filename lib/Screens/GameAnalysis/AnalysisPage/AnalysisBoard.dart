@@ -94,8 +94,10 @@ class AnalysisBoard {
     }
   }
 
-  Future<List> getPGNList(String gameKey) async {
-    final List PGNList = [];
+  static ValueNotifier<List> PGNList = ValueNotifier([]);
+
+  void getPGNList(String gameKey) async {
+    final List pgnList = [];
     final documentsDir = await getApplicationDocumentsDirectory();
     final filepath = documentsDir.path + '/$gameKey';
     final file = File(filepath);
@@ -108,10 +110,10 @@ class AnalysisBoard {
       // print(i);
       // print(csvTable[i][3]);
 
-      PGNList.add(csvTable[i][3]);
+      pgnList.add(csvTable[i][3]);
       print(PGNList);
     }
 
-    return PGNList;
+    PGNList.value = pgnList;
   }
 }

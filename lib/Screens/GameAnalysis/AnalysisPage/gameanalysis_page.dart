@@ -40,7 +40,7 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
     currentCP = await analysisBoard.getCP(moveNumber, gameKey);
     analysisBoard.getCPValue();
     analysisBoard.getCPValuePercentage();
-    PGNList = await analysisBoard.getPGNList(gameKey);
+    analysisBoard.getPGNList(gameKey);
   }
 
   void dispose() {
@@ -112,60 +112,48 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
               ],
             ),
           ),
-          // ValueListenableBuilder<String>(
-          //   valueListenable: AnalysisBoard.cpValue,
-          //   builder: (ctx, subCount, child) {
-          //     return Text(
-          //       "${AnalysisBoard.cpValue.value}",
-          //       style: TextStyle(
-          //         fontSize: 30,
-          //       ),
-          //     );
-          //   },
-          // ),
+          SizedBox(
+            height: 10,
+          ),
           Expanded(
-            child: GridView.builder(
-              key: const Key('PGNGridView'),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 7,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 5,
-                childAspectRatio: 3,
-              ),
-              itemCount: moveNumber,
-              // itemBuilder: (context, index) => InkWell(
-              //   highlightColor: Colors.red.withOpacity(0.4),
-              //   splashColor: Colors.amber.withOpacity(0.5),
-              //   onTap: () {},
-              itemBuilder: (context, index) {
-                // itemCount: PGNList.length,
-                final item = PGNList[index];
-                return InkWell(
-                  highlightColor: Colors.red.withOpacity(0.4),
-                  splashColor: Colors.amber.withOpacity(0.5),
-                  child: Container(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Text(
-                          '${PGNList[index]}',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.black,
+            child: ValueListenableBuilder<List>(
+              valueListenable: AnalysisBoard.PGNList,
+              builder: (context, subCount, child) {
+                return GridView.builder(
+                  key: const Key('PGNGridView'),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 7,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 5,
+                    childAspectRatio: 3,
+                  ),
+                  itemCount: moveNumber,
+                  itemBuilder: (context, index) {
+                    final item = AnalysisBoard.PGNList.value[index];
+                    return InkWell(
+                      highlightColor: Colors.red.withOpacity(0.4),
+                      splashColor: Colors.amber.withOpacity(0.5),
+                      child: Container(
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(0),
+                            child: Text(
+                              '${AnalysisBoard.PGNList.value[index]}',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.black,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  onTap: () async {
-                    String currentFen =
-                        await analysisBoard.switchPoistion(index + 1, gameKey);
-                    controller.loadFen(currentFen);
+                      onTap: () async {
+                        String currentFen = await analysisBoard.switchPoistion(
+                            index + 1, gameKey);
+                        controller.loadFen(currentFen);
+                      },
+                    );
                   },
-                  // onTap: () {
-                  //   print(index);
-                  // },
-                  // subtitle: item.buildSubtitle(context),
                 );
               },
             ),
@@ -185,13 +173,13 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
           //     },
           //   ),
           // ),
-          ElevatedButton(
-            onPressed: () {
-              // PGNList = await analysisBoard.getPGNList(gameKey);
-              print(PGNList);
-            },
-            child: Text('test 222'),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     // PGNList = await analysisBoard.getPGNList(gameKey);
+          //     print(PGNList);
+          //   },
+          //   child: Text('test 222'),
+          // ),
           // ElevatedButton(
           //   onPressed: () async {
           //     print(gameKey);
