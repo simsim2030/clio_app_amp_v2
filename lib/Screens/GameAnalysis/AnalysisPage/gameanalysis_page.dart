@@ -24,6 +24,7 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
   double a = 0.0;
   int moveNumber = 0;
   int maxMoveNumber = 0;
+  List PGNList = [];
 
   void initState() {
     super.initState();
@@ -33,12 +34,13 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
   void initializeBoard() async {
     String test = await analysisBoard.loadCSV(gameKey);
     controller.loadFen(test);
-    maxMoveNumber = await analysisBoard.getMoveNumber();
-    moveNumber = await analysisBoard.getMoveNumber();
+    maxMoveNumber = await analysisBoard.getMoveNumber(gameKey);
+    moveNumber = await analysisBoard.getMoveNumber(gameKey);
 
-    currentCP = await analysisBoard.getCP(moveNumber);
+    currentCP = await analysisBoard.getCP(moveNumber, gameKey);
     analysisBoard.getCPValue();
     analysisBoard.getCPValuePercentage();
+    PGNList = await analysisBoard.getPGNList(gameKey);
   }
 
   void dispose() {
@@ -122,25 +124,67 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
           //   },
           // ),
           Expanded(
-            child: ValueListenableBuilder<Chess>(
-              valueListenable: controller,
-              builder: (context, game, _) {
-                return Text(
-                  controller.getSan().fold(
-                        '',
-                        (previousValue, element) =>
-                            previousValue + '\n' + (element ?? ''),
+            child: GridView.builder(
+              key: const Key('PGNGridView'),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 7,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 5,
+                childAspectRatio: 3,
+              ),
+              itemCount: moveNumber,
+              // itemBuilder: (context, index) => InkWell(
+              //   highlightColor: Colors.red.withOpacity(0.4),
+              //   splashColor: Colors.amber.withOpacity(0.5),
+              //   onTap: () {},
+              itemBuilder: (context, index) {
+                // itemCount: PGNList.length,
+                final item = PGNList[index];
+                return ListTile(
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 0.0,
+                    horizontal: 2.0,
+                  ),
+                  dense: true,
+                  title: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(0),
+                      child: Text(
+                        '${PGNList[index]}',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.black,
+                        ),
                       ),
+                    ),
+                  ),
+                  // subtitle: item.buildSubtitle(context),
                 );
               },
             ),
           ),
-          // ElevatedButton(
-          //   onPressed: () {
-          //     updateCP();
-          //   },
-          //   child: Text('test 222'),
+
+          // Expanded(
+          //   child: ValueListenableBuilder<Chess>(
+          //     valueListenable: controller,
+          //     builder: (context, game, _) {
+          //       return Text(
+          //         controller.getSan().fold(
+          //               '',
+          //               (previousValue, element) =>
+          //                   previousValue + '\n' + (element ?? ''),
+          //             ),
+          //       );
+          //     },
+          //   ),
           // ),
+          ElevatedButton(
+            onPressed: () {
+              // PGNList = await analysisBoard.getPGNList(gameKey);
+              print(PGNList);
+            },
+            child: Text('test 222'),
+          ),
           // ElevatedButton(
           //   onPressed: () async {
           //     print(gameKey);
@@ -164,10 +208,11 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                       return;
                     } else {
                       moveNumber = moveNumber - 1;
-                      String currentFen =
-                          await analysisBoard.switchPoistion(moveNumber);
+                      String currentFen = await analysisBoard.switchPoistion(
+                          moveNumber, gameKey);
                       controller.loadFen(currentFen);
-                      currentCP = await analysisBoard.getCP(moveNumber);
+                      currentCP =
+                          await analysisBoard.getCP(moveNumber, gameKey);
                       analysisBoard.getCPValue();
                       analysisBoard.getCPValuePercentage();
                     }
@@ -179,10 +224,11 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                       return;
                     } else {
                       moveNumber = moveNumber + 1;
-                      String currentFen =
-                          await analysisBoard.switchPoistion(moveNumber);
+                      String currentFen = await analysisBoard.switchPoistion(
+                          moveNumber, gameKey);
                       controller.loadFen(currentFen);
-                      currentCP = await analysisBoard.getCP(moveNumber);
+                      currentCP =
+                          await analysisBoard.getCP(moveNumber, gameKey);
                       analysisBoard.getCPValue();
                       analysisBoard.getCPValuePercentage();
                     }

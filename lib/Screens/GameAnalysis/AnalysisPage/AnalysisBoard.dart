@@ -30,10 +30,10 @@ class AnalysisBoard {
     return CurrentFen;
   }
 
-  Future<int> getMoveNumber() async {
+  Future<int> getMoveNumber(String gameKey) async {
     final String CurrentFen;
     final documentsDir = await getApplicationDocumentsDirectory();
-    final filepath = documentsDir.path + '/Game1.csv';
+    final filepath = documentsDir.path + '/$gameKey';
     final file = File(filepath);
     final _rawData = await file.readAsString();
 
@@ -42,16 +42,16 @@ class AnalysisBoard {
     return csvTable.length - 1;
   }
 
-  Future<String> switchPoistion(moveNumber) async {
+  Future<String> switchPoistion(moveNumber, String gameKey) async {
     final String CurrentFen;
     final documentsDir = await getApplicationDocumentsDirectory();
-    final filepath = documentsDir.path + '/Game1.csv';
+    final filepath = documentsDir.path + '/$gameKey';
     final file = File(filepath);
     final _rawData = await file.readAsString();
 
     List<List<dynamic>> csvTable = CsvToListConverter().convert(_rawData);
     csvTable[0][1] = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1';
-    print(csvTable.length);
+    // print(csvTable.length);
     print(csvTable[moveNumber][1]);
 
     CurrentFen = csvTable[moveNumber][1];
@@ -59,10 +59,10 @@ class AnalysisBoard {
     return CurrentFen;
   }
 
-  Future<double> getCP(moveNumber) async {
+  Future<double> getCP(moveNumber, String gameKey) async {
     this.CurrentCP;
     final documentsDir = await getApplicationDocumentsDirectory();
-    final filepath = documentsDir.path + '/Game1.csv';
+    final filepath = documentsDir.path + '/$gameKey';
     final file = File(filepath);
     final _rawData = await file.readAsString();
 
@@ -92,5 +92,26 @@ class AnalysisBoard {
     } else {
       return;
     }
+  }
+
+  Future<List> getPGNList(String gameKey) async {
+    final List PGNList = [];
+    final documentsDir = await getApplicationDocumentsDirectory();
+    final filepath = documentsDir.path + '/$gameKey';
+    final file = File(filepath);
+    final _rawData = await file.readAsString();
+    List<List<dynamic>> csvTable = CsvToListConverter().convert(_rawData);
+    print(csvTable.length);
+    csvTable[0][3] = "";
+
+    for (int i = 1; i < csvTable.length; i++) {
+      // print(i);
+      // print(csvTable[i][3]);
+
+      PGNList.add(csvTable[i][3]);
+      print(PGNList);
+    }
+
+    return PGNList;
   }
 }

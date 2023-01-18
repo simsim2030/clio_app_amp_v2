@@ -152,7 +152,7 @@ class GameAnalysisSelection extends ConsumerWidget {
         child: storageItems.when(
           data: (items) => items.isEmpty
               ? const Center(
-                  child: Text('No Items'),
+                  child: Text('No Games'),
                 )
               : Column(
                   children: [
