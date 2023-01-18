@@ -140,24 +140,31 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
               itemBuilder: (context, index) {
                 // itemCount: PGNList.length,
                 final item = PGNList[index];
-                return ListTile(
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 0.0,
-                    horizontal: 2.0,
-                  ),
-                  dense: true,
-                  title: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: Text(
-                        '${PGNList[index]}',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
+                return InkWell(
+                  highlightColor: Colors.red.withOpacity(0.4),
+                  splashColor: Colors.amber.withOpacity(0.5),
+                  child: Container(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(0),
+                        child: Text(
+                          '${PGNList[index]}',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
                   ),
+                  onTap: () async {
+                    String currentFen =
+                        await analysisBoard.switchPoistion(index + 1, gameKey);
+                    controller.loadFen(currentFen);
+                  },
+                  // onTap: () {
+                  //   print(index);
+                  // },
                   // subtitle: item.buildSubtitle(context),
                 );
               },
