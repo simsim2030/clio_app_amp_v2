@@ -151,6 +151,10 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                         String currentFen = await analysisBoard.switchPoistion(
                             index + 1, gameKey);
                         controller.loadFen(currentFen);
+                        currentCP =
+                            await analysisBoard.getCP(index + 1, gameKey);
+                        analysisBoard.getCPValue();
+                        analysisBoard.getCPValuePercentage();
                       },
                     );
                   },
