@@ -116,4 +116,10 @@ class AnalysisBoard {
 
     PGNList.value = pgnList;
   }
+
+  static ValueNotifier<int> isSelectedMove = ValueNotifier(0);
+
+  void getSelectedMove(SelectedMove) {
+    isSelectedMove.value = SelectedMove;
+  }
 }

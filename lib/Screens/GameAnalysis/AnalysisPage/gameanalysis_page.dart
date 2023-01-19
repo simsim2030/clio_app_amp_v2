@@ -17,6 +17,8 @@ class GameAnalysisPage extends StatefulWidget {
 class _GameAnalysisPageState extends State<GameAnalysisPage> {
   String gameKey;
   _GameAnalysisPageState(this.gameKey);
+  int _PGNIndex = -1;
+  int selectedMove = -1;
 
   var currentCP = 0.0;
   ChessBoardController controller = ChessBoardController();
@@ -41,6 +43,8 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
     analysisBoard.getCPValue();
     analysisBoard.getCPValuePercentage();
     analysisBoard.getPGNList(gameKey);
+    int moveShown = moveNumber - 1;
+    analysisBoard.getSelectedMove(moveShown);
   }
 
   void dispose() {
@@ -130,33 +134,43 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                   itemCount: moveNumber,
                   itemBuilder: (context, index) {
                     final item = AnalysisBoard.PGNList.value[index];
-                    return InkWell(
-                      highlightColor: Colors.red.withOpacity(0.4),
-                      splashColor: Colors.amber.withOpacity(0.5),
-                      child: Container(
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(0),
-                            child: Text(
-                              '${AnalysisBoard.PGNList.value[index]}',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.black,
+                    return ValueListenableBuilder<int>(
+                        valueListenable: AnalysisBoard.isSelectedMove,
+                        builder: (context, subCount, child) {
+                          return GestureDetector(
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(width: 1),
+                                color:
+                                    AnalysisBoard.isSelectedMove.value == index
+                                        ? Colors.grey[900]
+                                        : Colors.red,
+                              ),
+                              child: Text(
+                                '${AnalysisBoard.PGNList.value[index]}',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      onTap: () async {
-                        String currentFen = await analysisBoard.switchPoistion(
-                            index + 1, gameKey);
-                        controller.loadFen(currentFen);
-                        currentCP =
-                            await analysisBoard.getCP(index + 1, gameKey);
-                        analysisBoard.getCPValue();
-                        analysisBoard.getCPValuePercentage();
-                      },
-                    );
+                            onTap: () async {
+                              String currentFen = await analysisBoard
+                                  .switchPoistion(index + 1, gameKey);
+                              controller.loadFen(currentFen);
+                              currentCP =
+                                  await analysisBoard.getCP(index + 1, gameKey);
+                              analysisBoard.getCPValue();
+                              analysisBoard.getCPValuePercentage();
+                              selectedMove = index;
+                              analysisBoard.getSelectedMove(selectedMove);
+                              moveNumber = selectedMove + 1;
+                              print(selectedMove);
+                            },
+                          );
+                        });
                   },
                 );
               },
@@ -214,6 +228,8 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                           await analysisBoard.getCP(moveNumber, gameKey);
                       analysisBoard.getCPValue();
                       analysisBoard.getCPValuePercentage();
+                      int moveShown = moveNumber - 1;
+                      analysisBoard.getSelectedMove(moveShown);
                     }
                   },
                   icon: Icon(Icons.arrow_back_ios)),
@@ -230,12 +246,31 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                           await analysisBoard.getCP(moveNumber, gameKey);
                       analysisBoard.getCPValue();
                       analysisBoard.getCPValuePercentage();
+                      int moveShown = moveNumber - 1;
+                      analysisBoard.getSelectedMove(moveShown);
                     }
                   },
                   icon: Icon(Icons.arrow_forward_ios)),
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildWidget(String language, int index) {
+    bool isSelected = _PGNIndex == index;
+    return Container(
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(width: 1),
+        color: Colors.grey[900],
+      ),
+      child: Text(
+        language,
+        style: TextStyle(
+            fontSize: 16, color: isSelected ? Colors.blue[400] : null),
       ),
     );
   }
