@@ -220,25 +220,28 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                  onPressed: () async {
-                    if (moveNumber <= 0) {
-                      return;
-                    } else {
-                      moveNumber = moveNumber - 1;
-                      String currentFen = await analysisBoard.switchPoistion(
-                          moveNumber, gameKey);
-                      controller.loadFen(currentFen);
-                      currentCP =
-                          await analysisBoard.getCP(moveNumber, gameKey);
-                      analysisBoard.getCPValue();
-                      analysisBoard.getCPValuePercentage();
-                      int moveShown = moveNumber - 1;
-                      analysisBoard.getSelectedMove(moveShown);
-                      print('moveShown: $moveShown');
-                      print('moveNumber: $moveNumber');
-                    }
-                  },
-                  icon: Icon(Icons.arrow_back_ios)),
+                onPressed: () async {
+                  if (moveNumber <= 0) {
+                    return;
+                  } else {
+                    moveNumber = moveNumber - 1;
+                    String currentFen =
+                        await analysisBoard.switchPoistion(moveNumber, gameKey);
+                    controller.loadFen(currentFen);
+                    currentCP = await analysisBoard.getCP(moveNumber, gameKey);
+                    analysisBoard.getCPValue();
+                    analysisBoard.getCPValuePercentage();
+                    int moveShown = moveNumber - 1;
+                    analysisBoard.getSelectedMove(moveShown);
+                    print('moveShown: $moveShown');
+                    print('moveNumber: $moveNumber');
+                  }
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                ),
+              ),
               IconButton(
                   onPressed: () async {
                     if (moveNumber == maxMoveNumber) {
@@ -256,7 +259,10 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                       analysisBoard.getSelectedMove(moveShown);
                     }
                   },
-                  icon: Icon(Icons.arrow_forward_ios)),
+                  icon: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                  )),
             ],
           ),
         ],
