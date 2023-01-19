@@ -59,6 +59,7 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
       appBar: AppBar(
         title: const Text('Analysis Board Demo'),
       ),
+      backgroundColor: Colors.grey[900],
       body: Column(
         children: <Widget>[
           Center(
@@ -141,17 +142,19 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                             child: Container(
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                border: Border.all(width: 1),
+                                // borderRadius: BorderRadius.circular(6),
+
+                                border: Border.all(
+                                    width: 0, style: BorderStyle.none),
                                 color:
                                     AnalysisBoard.isSelectedMove.value == index
-                                        ? Colors.grey[900]
-                                        : Colors.red,
+                                        ? Colors.grey[700]
+                                        : Colors.grey[900],
                               ),
                               child: Text(
                                 '${AnalysisBoard.PGNList.value[index]}',
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   color: Colors.white,
                                 ),
                               ),
