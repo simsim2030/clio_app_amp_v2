@@ -217,7 +217,7 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
             children: [
               IconButton(
                   onPressed: () async {
-                    if (moveNumber == 0) {
+                    if (moveNumber <= 0) {
                       return;
                     } else {
                       moveNumber = moveNumber - 1;
@@ -230,6 +230,8 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                       analysisBoard.getCPValuePercentage();
                       int moveShown = moveNumber - 1;
                       analysisBoard.getSelectedMove(moveShown);
+                      print('moveShown: $moveShown');
+                      print('moveNumber: $moveNumber');
                     }
                   },
                   icon: Icon(Icons.arrow_back_ios)),

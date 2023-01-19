@@ -67,7 +67,7 @@ class AnalysisBoard {
     final _rawData = await file.readAsString();
 
     List<List<dynamic>> csvTable = CsvToListConverter().convert(_rawData);
-    csvTable[0][2] = 0;
+    csvTable[0][2] = 0.0;
 
     this.CurrentCP = csvTable[moveNumber][2];
 
