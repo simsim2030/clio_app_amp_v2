@@ -154,8 +154,9 @@ class _GameAnalysisPageState extends State<GameAnalysisPage> {
                               child: Text(
                                 '${AnalysisBoard.PGNList.value[index]}',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 15,
                                   color: Colors.white,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
