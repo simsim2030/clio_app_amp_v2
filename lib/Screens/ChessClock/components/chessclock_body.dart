@@ -148,13 +148,15 @@ class _ChessClockBodyState extends State<ChessClockBody> {
               padding: const EdgeInsets.all(15.0),
               child: ChessClockTimer(
                 onPressed: () {
-                  _onTopPressed();
-                  setState(() {
-                    _gameRunning = true;
-                    _initializing = false;
-                    _B_W = -1;
-                  });
-                  print('gameRunning: ' + _gameRunning.toString());
+                  if (_initializing == false) {
+                    _onTopPressed();
+                    setState(() {
+                      _gameRunning = true;
+                      _initializing = false;
+                      _B_W = -1;
+                    });
+                    print('gameRunning: ' + _gameRunning.toString());
+                  } else {}
                 },
                 colour: 'White',
                 isReversed: true,
@@ -193,6 +195,21 @@ class _ChessClockBodyState extends State<ChessClockBody> {
                   ),
                 ),
               ),
+              //  Surrender Button
+              Center(
+                child: IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      _onSurrenderPress(movenumber);
+                      _topClock.pause();
+                      _bottomClock.pause();
+                    },
+                    icon: Icon(
+                      Icons.flag,
+                      color: Colors.grey[200],
+                      size: 42,
+                    )),
+              ),
               //  Play/Pause Button
               Center(
                 child: IconButton(
@@ -225,6 +242,21 @@ class _ChessClockBodyState extends State<ChessClockBody> {
                   },
                   icon: Image.asset('assets/icons/pause.png'),
                 ),
+              ),
+              //  Draw Button
+              Center(
+                child: IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      _onDrawPress();
+                      _topClock.pause();
+                      _bottomClock.pause();
+                    },
+                    icon: Icon(
+                      Icons.handshake,
+                      color: Colors.grey[200],
+                      size: 42,
+                    )),
               ),
               // Reset Button
               Center(
@@ -279,7 +311,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
   }
 
   // Timer Press Logic
-  // Top Button Logic
+  // Top Button Logic (send String -1)
   void _onTopPressed() {
     _topClock.pause();
     _bottomClock.start();
@@ -307,7 +339,7 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
   }
 
-  // Bottom button logic
+  // Bottom button logic (send String 1)
   void _onBottomPressed() {
     _topClock.start();
     _bottomClock.pause();
@@ -332,6 +364,24 @@ class _ChessClockBodyState extends State<ChessClockBody> {
     const pubTopic = 'esp32/sub';
     final builder = MqttClientPayloadBuilder();
     builder.addString('1');
+    client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
+  }
+
+  // Surrender button logic (send String 2 - White win, Send String 3 - Black win)
+  void _onSurrenderPress(movenumber) {
+    // Trigger
+    const pubTopic = 'esp32/sub';
+    final builder = MqttClientPayloadBuilder();
+    (movenumber.isOdd) ? builder.addString('2') : builder.addString('3');
+    client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
+  }
+
+  // Surrender button logic (send String 4)
+  void _onDrawPress() {
+    // Trigger
+    const pubTopic = 'esp32/sub';
+    final builder = MqttClientPayloadBuilder();
+    builder.addString('4');
     client.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
   }
 
